@@ -431,7 +431,7 @@ searchInput.addEventListener('input', e => {
     block.dataset.empty = visibleRows === 0 ? "true" : "false";
   });
   document.getElementById('searchMeta').textContent = q === ''
-    ? ${totalCourses} courses indexed across 8 semesters
+    ? `${totalCourses} courses indexed across 8 semesters`
     : `${visibleCount} match${visibleCount === 1 ? '' : 'es'} for “${q}”`;
 });
 

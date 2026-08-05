@@ -123,7 +123,7 @@ table.course-table thead th{
   text-align:left; font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
   color:var(--text-soft); padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);
 }
-table.course-table td{padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.08); vertical-align:top; color:var(--text);}
+table.course-table {padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.08); vertical-align:top; color:var(--text);}
 table.course-table tbody tr:last-child td{border-bottom:none;}
 table.course-table tbody tr.course-row:hover{background:rgba(255,255,255,0.05);}
 .code-chip{font-family:var(--mono); font-size:12.5px; font-weight:700; color:#f8fbff; background:rgba(94,234,212,0.16); padding:5px 10px; border-radius:999px; white-space:nowrap;}
@@ -399,8 +399,8 @@ semContainer.innerHTML = semesters.map(sem => `
         ${sem.courses.map(c => `
           <tr class="course-row" data-search="${(c.code+' '+c.title).toLowerCase()}">
             <td class="cat-tag">${c.cat}</td>
-            <td>${c.code === '—' ? '<span class="cat-tag">TBD</span>' : <span class="code-chip">${c.code}</span>}</td>
-            <td class="crs-title">${c.link ? <a class="crs-title-link" href="${c.link}" target="_blank" rel="noopener">${c.title} ↗️</a> : c.title}</td>
+            <td>${c.code === '—' ? '<span class="cat-tag">TBD</span>' : `<span class="code-chip">${c.code}</span>`}</td>
+            <td class="crs-title">${c.link ? `<a class="crs-title-link" href="${c.link}" target="_blank" rel="noopener">${c.title} ↗️</a>` : c.title}</td>
             <td class="cat-tag">${c.ltp}</td>
             <td class="cat-tag">${c.cr}</td>
           </tr>
@@ -414,7 +414,7 @@ semContainer.innerHTML = semesters.map(sem => `
  
 // total count
 const totalCourses = semesters.reduce((n,s)=>n+s.courses.length,0);
-document.getElementById('searchMeta').textContent = ${totalCourses} courses indexed across 8 semesters;
+document.getElementById('searchMeta').textContent = `${totalCourses} courses indexed across 8 semesters`;
  
 // ================= SEARCH =================
 const searchInput = document.getElementById('courseSearch');
@@ -432,7 +432,7 @@ searchInput.addEventListener('input', e => {
   });
   document.getElementById('searchMeta').textContent = q === ''
     ? ${totalCourses} courses indexed across 8 semesters
-    : ${visibleCount} match${visibleCount === 1 ? '' : 'es'} for “${q}”;
+    : `${visibleCount} match${visibleCount === 1 ? '' : 'es'} for “${q}”`;
 });
 
 // ================= SEARCH ACTIVATION & HOTKEYS =================

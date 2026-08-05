@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amrita Student Resource Centre — CSE (AI) Syllabus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050814;
+  --surface:rgba(255,255,255,0.08);
+  --surface-strong:rgba(255,255,255,0.12);
+  --text:#eef2ff;
+  --text-muted:rgba(238,242,255,0.72);
+  --text-soft:rgba(238,242,255,0.62);
+  --accent:#5eead4;
+  --accent-2:#ffcc5c;
+  --accent-3:#c084fc;
+  --display:'Space Grotesk', sans-serif;
+  --body:'Inter', sans-serif;
+  --mono:'JetBrains Mono', monospace;
+  --shadow:0 24px 80px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,255,255,0.02);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms!important; transition-duration:.001ms!important;} }
+body{margin:0; min-height:100vh; background:radial-gradient(circle at top left, rgba(94,234,212,0.16), transparent 16%), radial-gradient(circle at bottom right, rgba(192,132,252,0.14), transparent 18%), linear-gradient(180deg, #050814 0%, #090f1d 42%, #0b1321 100%); color:var(--text); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased;}
+body::before{content:''; position:fixed; inset:0; background-image:radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size:40px 40px; opacity:0.18; pointer-events:none;}
+h1,h2,h3,h4{font-family:var(--display); margin:0;}
+p{margin:0;}
+a{color:inherit;}
+img{max-width:100%; display:block;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 28px; position:relative;}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px;}
+.skip-link{position:absolute; left:-999px; top:0; background:var(--accent); color:#050814; padding:10px 16px; z-index:999; font-family:var(--body); font-weight:700; border-radius:999px;}
+.skip-link:focus{left:18px;}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700;}
+
+/* ===== NAV ===== */
+header.site{position:sticky; top:0; z-index:90; background:rgba(5,8,20,0.9); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px; gap:20px;}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);}
+.brand-mark{width:44px; height:44px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent-3)); display:flex; align-items:center; justify-content:center; color:#050814; font-family:var(--mono); font-weight:700; font-size:14px;}
+.brand-text{font-family:var(--display); font-weight:700; font-size:16px; line-height:1.2;}
+.brand-text span{display:block; font-family:var(--mono); font-weight:400; font-size:10px; letter-spacing:0.18em; color:var(--text-soft); text-transform:uppercase;}
+nav.links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14px; font-weight:600;}
+nav.links a{text-decoration:none; color:var(--text-soft); padding:6px 2px; border-bottom:2px solid transparent; transition:color .24s ease, border-color .24s ease;}
+nav.links a:hover{color:var(--accent); border-bottom-color:var(--accent);}
+.nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#050814; border:none; padding:12px 20px; border-radius:999px; font-size:13.5px; font-weight:700; text-decoration:none; white-space:nowrap; font-family:var(--mono); box-shadow:0 22px 50px rgba(94,234,212,0.18);}
+.nav-cta:hover{filter:brightness(1.05);}
+.burger{display:none; background:none; border:1px solid rgba(255,255,255,0.1); border-radius:14px; width:44px; height:44px; align-items:center; justify-content:center; flex-direction:column; gap:5px;}
+.burger span, .burger::before, .burger::after{content:''; display:block; width:18px; height:2px; background:var(--text); border-radius:999px;}
+@media (max-width:880px){
+  nav.links{position:fixed; inset:72px 0 0 0; background:rgba(5,8,20,0.97); flex-direction:column; padding:28px 26px; gap:18px; transform:translateY(-120%); transition:transform .25s ease; border-bottom:1px solid rgba(255,255,255,0.08);}
+  nav.links.open{transform:translateY(0);}
+  nav.links a{font-size:18px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .burger{display:flex;} .nav-cta{display:none;}
+}
+
+/* ===== HERO ===== */
+.hero{position:relative; padding:76px 0 48px; overflow:hidden;}
+.hero::after{content:''; position:absolute; inset:0; background:radial-gradient(circle at 10% 20%, rgba(94,234,212,0.14), transparent 18%), radial-gradient(circle at 80% 12%, rgba(192,132,252,0.12), transparent 18%); pointer-events:none;}
+.hero-inner{position:relative; display:grid; gap:38px;}
+.hero .eyebrow{color:var(--accent);}
+.hero h1{font-size:clamp(3rem,5vw,5.1rem); line-height:0.98; margin:14px 0 20px; font-weight:800; max-width:15ch; letter-spacing:-0.03em;}
+.hero h1 em{font-style:normal; color:var(--accent-2);}
+.hero p.lead{color:var(--text-muted); font-size:1.05rem; max-width:58ch; margin-bottom:8px;}
+.hero-note{font-family:var(--mono); font-size:13px; color:var(--text-soft); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:18px 22px; display:inline-flex; gap:12px; max-width:66ch; backdrop-filter:blur(16px);}
+.hero-copy{display:grid; gap:26px;}
+.hero-actions{display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+.hero-actions .hero-pill{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.19em; color:var(--text-soft); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:12px 16px;}
+.hero-panels{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;}
+.hero-card{position:relative; overflow:hidden; min-height:172px; padding:28px 26px; border-radius:28px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(20px); box-shadow:var(--shadow); transition:transform .32s ease, border-color .32s ease, background .32s ease;}
+.hero-card:hover{transform:translateY(-5px); border-color:rgba(94,234,212,0.24); background:rgba(255,255,255,0.08);}
+.hero-card h3{font-size:0.9rem; margin-bottom:14px; text-transform:uppercase; letter-spacing:0.2em; color:var(--text-soft);}
+.hero-card strong{display:block; font-size:2.35rem; line-height:1; margin-bottom:8px; color:var(--accent);}
+.hero-card p{font-size:0.96rem; color:var(--text-soft);}
+.search-row{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px;}
+.search-box{flex:1 1 340px; display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:18px; padding:16px 18px;}
+.search-box input{border:none; outline:none; font-family:var(--mono); font-size:15px; width:100%; background:transparent; color:var(--text);}
+.search-box input::placeholder{color:rgba(238,242,255,0.55);}
+.search-box:focus-within{border-color:var(--accent); box-shadow:0 0 0 1px rgba(94,234,212,0.18);}
+.search-hotkey{font-family:var(--mono); font-size:12px; color:var(--text-soft); margin-left:auto;}
+.search-meta{font-family:var(--mono); font-size:12px; color:var(--text-soft); margin-top:12px;}
+
+/* semester graph */
+.graph{display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:16px; margin-top:36px; position:relative;}
+.graph::before{content:''; position:absolute; inset:0; top:26px; left:12px; right:12px; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);}
+.node{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px; text-decoration:none; color:var(--text);}
+.node-dot{width:56px; height:56px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; font-size:14px; color:var(--text); transition:transform .2s ease, box-shadow .2s ease, background .2s ease;}
+.node:hover .node-dot{transform:translateY(-5px); box-shadow:0 24px 60px rgba(94,234,212,0.18); background:linear-gradient(135deg, rgba(94,234,212,0.24), rgba(192,132,252,0.16));}
+.node span.lbl{font-family:var(--mono); font-size:10.5px; color:var(--text-soft); text-transform:uppercase; letter-spacing:0.08em;}
+@media (max-width:1080px){ .hero-panels{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (max-width:760px){ .hero-inner{gap:28px;} .hero-panels{grid-template-columns:1fr;} .graph{grid-template-columns:repeat(4,minmax(0,1fr));} }
+@media (max-width:560px){ .nav{padding:14px 18px;} .brand-text{font-size:14px;} .hero h1{font-size:clamp(2.4rem,8vw,3.4rem);} .hero-actions{flex-direction:column; align-items:flex-start;} .nav-cta{width:100%; justify-content:center;} .graph{grid-template-columns:repeat(2,minmax(0,1fr));} }
+
+/* ===== STATS ===== */
+.stats{background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.08);}
+.stats-row{display:flex; flex-wrap:wrap; padding:28px 0;}
+.stat{flex:1 1 180px; padding:12px 24px; border-left:1px solid rgba(255,255,255,0.08);}
+.stat:first-child{border-left:none;}
+.stat b{display:block; font-family:var(--display); font-size:2.1rem; color:var(--accent-2);}
+.stat span{font-size:12.5px; color:var(--text-soft); font-family:var(--mono); text-transform:uppercase; letter-spacing:0.12em;}
+
+/* ===== SECTIONS ===== */
+section{padding:72px 0;}
+.section-head{max-width:720px; margin-bottom:34px;}
+.section-head .eyebrow{color:var(--accent-3);}
+.section-head h2{font-size:clamp(2.1rem,3.8vw,3rem); margin:10px 0 12px; font-weight:800; color:#f8fbff;}
+.section-head p{color:var(--text-soft); font-size:1rem;}
+
+/* semester card */
+.sem-block{background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:30px; box-shadow:var(--shadow); margin-bottom:28px; overflow:hidden; transition:transform .3s ease;}
+.sem-block:hover{transform:translateY(-4px);}
+.sem-head{display:flex; align-items:center; justify-content:space-between; padding:26px 28px; background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)); border-bottom:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:10px;}
+.sem-head h3{font-size:1.22rem; font-weight:700; color:#f8fbff;}
+.sem-head h3 .roman{font-family:var(--mono); color:var(--accent-3); margin-right:8px;}
+.sem-credit{font-family:var(--mono); font-size:13px; color:var(--text-soft); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); padding:10px 16px; border-radius:999px;}
+table.course-table{width:100%; border-collapse:separate; border-spacing:0; font-size:0.95rem;}
+table.course-table thead th{
+  text-align:left; font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--text-soft); padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);
+}
+table.course-table td{padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.08); vertical-align:top; color:var(--text);}
+table.course-table tbody tr:last-child td{border-bottom:none;}
+table.course-table tbody tr.course-row:hover{background:rgba(255,255,255,0.05);}
+.code-chip{font-family:var(--mono); font-size:12.5px; font-weight:700; color:#f8fbff; background:rgba(94,234,212,0.16); padding:5px 10px; border-radius:999px; white-space:nowrap;}
+.cat-tag{font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-soft);}
+.crs-title{font-weight:700;}
+.crs-link{display:inline-flex; align-items:center; gap:5px; color:var(--accent); font-weight:700; text-decoration:none; font-size:13px; margin-left:8px;}
+.crs-link:hover{color:var(--accent-2);}
+.crs-title-link{color:var(--accent); font-weight:700; text-decoration:none;}
+.crs-title-link:hover{color:var(--accent-2); text-decoration:underline;}
+.course-row[hidden]{display:none;}
+.sem-block[data-empty="true"]{display:none;}
+
+/* ===== NOTE / FOOTER ===== */
+.source-note{background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:26px; padding:24px 28px; font-size:0.95rem; color:var(--text-soft); display:flex; gap:18px; align-items:flex-start; backdrop-filter:blur(18px);}
+.source-note b{color:#f8fbff; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.14em; display:block; margin-bottom:8px;}
+footer{background:#050814; color:var(--text-soft); padding:52px 0 28px; border-top:1px solid rgba(255,255,255,0.08);}
+.footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:14px;}
+footer a{text-decoration:none; color:var(--accent);}
+footer a:hover{color:var(--accent-2);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08); margin-top:30px; padding-top:20px; font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+</style>
+</head>
+<body>
+<a href="#semesters" class="skip-link">Skip to syllabus</a>
+ 
+<header class="site">
+  <div class="nav wrap">
+    <a href="#top" class="brand">
+      <span class="brand-mark">AI</span>
+      <span class="brand-text">Amrita Student<br>Resource Centre<span>CSE (AI) Syllabus Hub</span></span>
+    </a>
+    <ul class="links" id="navLinks">
+      <li><a href="#semesters">Semesters</a></li>
+      <li><a href="#exams">Exams</a></li>
+      <li><a href="#source">Source</a></li>
+    </ul>
+    <a href="#semesters" class="nav-cta">View syllabus →</a>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+ 
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">B.Tech · School of Engineering</p>
+        <h1>The CSE <em>(AI)</em> curriculum, mapped semester by semester.</h1>
+        <p class="lead">Every course, code, and credit for Amrita's B.Tech in Computer Science and Engineering (Artificial Intelligence) — pulled straight from the official curriculum, not a rumor from a WhatsApp group.</p>
+        <p class="hero-note">📍 Source: amrita.edu program page, Amritapuri campus. Course codes shown use the 22AIE curriculum. Your campus or admission year may run a slightly different version — check the official PDF linked at the bottom before you rely on this for registration.</p>
+        <div class="hero-actions">
+          <a href="#semesters" class="nav-cta">View syllabus →</a>
+          <span class="hero-pill">8 semesters · 62 courses · 162 credits</span>
+        </div>
+      </div>
+
+      <div class="hero-panels">
+        <article class="hero-card">
+          <h3>Optimized for students</h3>
+          <strong>Quick reference</strong>
+          <p>Semester blocks are built for fast scanning, with course codes, L-T-P and credit load clearly surfaced.</p>
+        </article>
+        <article class="hero-card">
+          <h3>Search-first workflow</h3>
+          <strong>Instant lookup</strong>
+          <p>Type any course name or code and filter the syllabus live without page reloads.</p>
+        </article>
+        <article class="hero-card">
+          <h3>Clean, polished UI</h3>
+          <strong>Award-ready</strong>
+          <p>Modern glassmorphism, layered gradients and micro interactions bring the curriculum page up to par.</p>
+        </article>
+      </div>
+
+      <div>
+        <div class="search-row">
+          <div class="search-box">
+            <span aria-hidden="true" style="color:var(--text-soft);">⌕</span>
+            <input type="text" id="courseSearch" placeholder="Search a course — try “deep learning” or “22AIE304”" aria-label="Search courses">
+            <span class="search-hotkey" aria-hidden="true">/ or Ctrl+K</span>
+          </div>
+        </div>
+        <p class="search-meta" id="searchMeta">62 courses indexed across 8 semesters</p>
+      </div>
+
+      <nav class="graph" aria-label="Jump to semester">
+        <a href="#sem-1" class="node"><span class="node-dot">1</span><span class="lbl">Sem 1</span></a>
+        <a href="#sem-2" class="node"><span class="node-dot">2</span><span class="lbl">Sem 2</span></a>
+        <a href="#sem-3" class="node"><span class="node-dot">3</span><span class="lbl">Sem 3</span></a>
+        <a href="#sem-4" class="node"><span class="node-dot">4</span><span class="lbl">Sem 4</span></a>
+        <a href="#sem-5" class="node"><span class="node-dot">5</span><span class="lbl">Sem 5</span></a>
+        <a href="#sem-6" class="node"><span class="node-dot">6</span><span class="lbl">Sem 6</span></a>
+        <a href="#sem-7" class="node"><span class="node-dot">7</span><span class="lbl">Sem 7</span></a>
+        <a href="#sem-8" class="node"><span class="node-dot">8</span><span class="lbl">Sem 8</span></a>
+      </nav>
+    </div>
+  </section>
+ 
+  <div class="stats">
+    <div class="wrap stats-row">
+      <div class="stat"><b>8</b><span>semesters</span></div>
+      <div class="stat"><b>162</b><span>total credits</span></div>
+      <div class="stat"><b>~30</b><span>core AI/CSE courses</span></div>
+    </div>
+  </div>
+ 
+  <section id="semesters">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The core path</p>
+        <h2>Semester-wise syllabus</h2>
+        <p>Category, course code, title, L-T-P (lecture-tutorial-practical hours), and credits — exactly as published. Search above filters every table below.</p>
+      </div>
+      <div id="semContainer"></div>
+    </div>
+  </section>
+ 
+  <section id="exams">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Assessment planning</p>
+        <h2>Exams</h2>
+        <p>Exam schedules, formats, and key grading notes for the CSE (AI) curriculum will be added here shortly.</p>
+      </div>
+      <div class="source-note">
+        <span aria-hidden="true" style="font-size:20px;">📝</span>
+        <div>
+          This section is reserved for exam-related details such as end-semester timelines, midterm structure, and evaluation guidelines. Add your exam notes or reference materials here as needed.
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- Electives section removed -->
+ 
+  <section id="source">
+    <div class="wrap">
+      <div class="source-note">
+        <span aria-hidden="true" style="font-size:20px;">ⓘ</span>
+        <div>
+          <b>Where this data comes from</b>
+          Course lists, codes, L-T-P, and credits are copied from Amrita's official "B. Tech. in Computer Science and Engineering (Artificial Intelligence)" program page (Amritapuri campus curriculum, 22AIE course series). Minor free-elective and IKS lists were left out to keep this page focused — download the full curriculum PDF from the official page for those. Curricula are revised periodically and can differ by campus and admission year, so treat this as a quick reference, not your registration form.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+ 
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand" style="color:var(--off); margin-bottom:8px;">
+        <span class="brand-mark">AI</span>
+        <span class="brand-text">Amrita Student<br>Resource Centre<span>CSE (AI) Syllabus Hub</span></span>
+      </div>
+      <p style="max-width:34ch;">The Amrita Student Resource Centre — an unofficial, student-run reference, currently scoped to the CSE (AI) syllabus. Not affiliated with Amrita's official academic systems.</p>
+    </div>
+    <div>
+      <a href="https://www.amrita.edu/program/btech-computer-science-and-engineering-artificial-intelligence/" target="_blank" rel="noopener">Official program page ↗</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>Amrita Student Resource Centre — built by students, for students.</span>
+    <span>Verify against your batch's official curriculum before registering.</span>
+  </div>
+</footer>
+ 
+<script>
+// ================= SYLLABUS DATA (source: amrita.edu, Amritapuri campus, 22AIE curriculum) =================
+const semesters = [
+  { n:1, roman:"I", credits:"24",
+    courses:[
+      {cat:"SCI", code:"22MAT110", title:"Mathematics for Computing 1", ltp:"2-1-3", cr:"4", link:"https://amritauniv-my.sharepoint.com/:f:/g/personal/am_sc_u4aie26116_am_students_amrita_edu/IgBqZonyyk_DRo_IEapf5_F-AUGXq1iJx1VUnYTnWKcZw7k?e=jrPd9t"},
+      {cat:"SCI", code:"22PHY106", title:"Computational Physics", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE101", title:"Problem Solving & C Programming", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE102", title:"Elements of Computing Systems 1", ltp:"2-0-3", cr:"3", link:"https://amritauniv-my.sharepoint.com/:f:/g/personal/am_sc_u4aie26116_am_students_amrita_edu/IgAbPCuBulOBTI-NGkQRX9YlAdpejsOhrkSzxBNog6KZPto?e=k5kMna"},
+      {cat:"ENGG", code:"22MAT121", title:"Discrete Mathematics", ltp:"2-0-3", cr:"3"},
+      {cat:"HUM", code:"22ADM101", title:"Foundations of Indian Heritage", ltp:"2-0-0", cr:"2", link:"https://amritauniv-my.sharepoint.com/:f:/g/personal/am_sc_u4aie26116_am_students_amrita_edu/IgDs0cIalA0DTZhkeypQesdnASiFYk3BggC4Iwou_p-YH1I?e=HbUXlF"},
+      {cat:"HUM", code:"19ENG111", title:"Technical Communication", ltp:"2-0-3", cr:"3"},
+      {cat:"HUM", code:"22AVP103", title:"Mastery Over Mind (MAOM)", ltp:"1-0-2", cr:"2"}
+    ]
+  },
+  { n:2, roman:"II", credits:"23",
+    courses:[
+      {cat:"SCI", code:"22MAT122", title:"Mathematics for Computing 2", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE111", title:"Object Oriented Programming in Java", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE112", title:"Data Structures & Algorithms 1", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE113", title:"Elements of Computing Systems 2", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE114", title:"Introduction to Electrical and Electronics Engineering", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE115", title:"User Interface Design", ltp:"2-0-3", cr:"3"},
+      {cat:"HUM", code:"22ADM111", title:"Glimpses of Glorious India", ltp:"2-0-0", cr:"2"}
+    ]
+  },
+  { n:3, roman:"III", credits:"23",
+    courses:[
+      {cat:"SCI", code:"22MAT220", title:"Mathematics for Computing 3", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE201", title:"Fundamentals of AI", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE202", title:"Operating Systems", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE203", title:"Data Structures & Algorithms 2", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE204", title:"Introduction to Computer Networks", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE205", title:"Introduction to Python", ltp:"1-0-3", cr:"2"},
+      {cat:"ENGG", code:"22BIO201", title:"Intelligence of Biological Systems 1", ltp:"2-0-0", cr:"2"},
+      {cat:"ENGG", code:"—", title:"Free Elective 1", ltp:"2-0-0", cr:"2"},
+      {cat:"HUM", code:"—", title:"Amrita Values Program", ltp:"1-0-0", cr:"1"}
+    ]
+  },
+  { n:4, roman:"IV", credits:"22",
+    courses:[
+      {cat:"SCI", code:"22MAT230", title:"Mathematics for Computing 4", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE211", title:"Introduction to Communication & IoT", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE212", title:"Design and Analysis of Algorithms", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE213", title:"Machine Learning", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE214", title:"Introduction to AI Robotics", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22BIO211", title:"Intelligence of Biological Systems 2", ltp:"2-0-3", cr:"3"},
+      {cat:"HUM", code:"—", title:"Amrita Values Program", ltp:"1-0-0", cr:"1"},
+      {cat:"HUM", code:"19ENV300", title:"Environmental Science", ltp:"—", cr:"P/F"},
+      {cat:"HUM", code:"19SSK211", title:"Soft Skills I", ltp:"1-0-3", cr:"2"}
+    ]
+  },
+  { n:5, roman:"V", credits:"21 + [3]",
+    courses:[
+      {cat:"ENGG", code:"22AIE301", title:"Probabilistic Reasoning", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE302", title:"Formal Language and Automata", ltp:"2-1-0", cr:"3"},
+      {cat:"ENGG", code:"22AIE303", title:"Database Management Systems", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE304", title:"Deep Learning", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE305", title:"Introduction to Cloud Computing", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"—", title:"Professional Elective 1", ltp:"2-0-3", cr:"3"},
+      {cat:"HUM", code:"19SSK301", title:"Soft Skills II", ltp:"1-0-3", cr:"2"},
+      {cat:"HUM", code:"19LIV390", title:"Live-in-Labs I", ltp:"—", cr:"[3]"}
+    ]
+  },
+  { n:6, roman:"VI", credits:"21 + [3]",
+    courses:[
+      {cat:"ENGG", code:"22AIE311", title:"Software Engineering (Project-Based)", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE312", title:"Big Data Analytics", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE313", title:"Computer Vision & Image Processing", ltp:"2-1-3", cr:"4"},
+      {cat:"ENGG", code:"22AIE314", title:"Computer Security", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"22AIE315", title:"Natural Language Processing", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"—", title:"Professional Elective 2", ltp:"2-0-3", cr:"3"},
+      {cat:"HUM", code:"19SSK311", title:"Soft Skills III", ltp:"1-0-3", cr:"2"},
+      {cat:"ENGG", code:"19LIV490", title:"Live-in-Labs II", ltp:"—", cr:"[3]"}
+    ]
+  },
+  { n:7, roman:"VII", credits:"18",
+    courses:[
+      {cat:"ENGG", code:"22AIE401", title:"Reinforcement Learning", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"—", title:"Professional Elective 3", ltp:"2-0-3", cr:"3"},
+      {cat:"ENGG", code:"—", title:"Professional Elective 4", ltp:"2-0-3", cr:"3"},
+      {cat:"HUM", code:"19LAW300", title:"Indian Constitution", ltp:"1-0-0", cr:"P/F"},
+      {cat:"ENGG", code:"—", title:"Free Elective 2", ltp:"3-0-0", cr:"3"},
+      {cat:"PRJ", code:"22AIE498", title:"Project Phase 1", ltp:"—", cr:"6"}
+    ]
+  },
+  { n:8, roman:"VIII", credits:"10",
+    courses:[
+      {cat:"PRJ", code:"22AIE499", title:"Project Phase 2", ltp:"—", cr:"10"}
+    ]
+  }
+];
+ 
+// Electives removed from this build
+ 
+// ================= RENDER =================
+const semContainer = document.getElementById('semContainer');
+semContainer.innerHTML = semesters.map(sem => `
+  <div class="sem-block" id="sem-${sem.n}" data-empty="false">
+    <div class="sem-head">
+      <h3><span class="roman">${sem.roman}</span>Semester ${sem.n}</h3>
+      <span class="sem-credit">${sem.courses.length} courses · ${sem.credits} credits</span>
+    </div>
+    <table class="course-table">
+      <thead><tr><th>Cat.</th><th>Code</th><th>Title</th><th>L-T-P</th><th>Cr</th></tr></thead>
+      <tbody>
+        ${sem.courses.map(c => `
+          <tr class="course-row" data-search="${(c.code+' '+c.title).toLowerCase()}">
+            <td class="cat-tag">${c.cat}</td>
+            <td>${c.code === '—' ? '<span class="cat-tag">TBD</span>' : `<span class="code-chip">${c.code}</span>`}</td>
+            <td class="crs-title">${c.link ? `<a class="crs-title-link" href="${c.link}" target="_blank" rel="noopener">${c.title} ↗</a>` : c.title}</td>
+            <td class="cat-tag">${c.ltp}</td>
+            <td class="cat-tag">${c.cr}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  </div>
+`).join('');
+ 
+// Electives rendering removed
+ 
+// total count
+const totalCourses = semesters.reduce((n,s)=>n+s.courses.length,0);
+document.getElementById('searchMeta').textContent = `${totalCourses} courses indexed across 8 semesters`;
+ 
+// ================= SEARCH =================
+const searchInput = document.getElementById('courseSearch');
+searchInput.addEventListener('input', e => {
+  const q = e.target.value.trim().toLowerCase();
+  let visibleCount = 0;
+  document.querySelectorAll('.course-row').forEach(row => {
+    const match = q === '' || row.dataset.search.includes(q);
+    row.hidden = !match;
+    if(match) visibleCount++;
+  });
+  document.querySelectorAll('.sem-block').forEach(block => {
+    const visibleRows = block.querySelectorAll('.course-row:not([hidden])').length;
+    block.dataset.empty = visibleRows === 0 ? "true" : "false";
+  });
+  document.getElementById('searchMeta').textContent = q === ''
+    ? `${totalCourses} courses indexed across 8 semesters`
+    : `${visibleCount} match${visibleCount === 1 ? '' : 'es'} for “${q}”`;
+});
+
+// ================= SEARCH ACTIVATION & HOTKEYS =================
+// Focus search when user presses '/' or Ctrl/Cmd+K. Ignore when typing in inputs.
+window.addEventListener('keydown', e => {
+  const active = document.activeElement;
+  const isTyping = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+  if(isTyping) return;
+  if(e.key === '/' ){
+    e.preventDefault(); searchInput.focus(); searchInput.select();
+  }
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+    e.preventDefault(); searchInput.focus(); searchInput.select();
+  }
+});
+ 
+// ================= MOBILE NAV =================
+const burger = document.getElementById('burgerBtn');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+navLinks.addEventListener('click', e => {
+  if(e.target.tagName === 'A'){ navLinks.classList.remove('open'); burger.setAttribute('aria-expanded', false); }
+});
+</script>
+</body>
+</html>

@@ -397,66 +397,6 @@
             cursor: pointer;
         }
 
-        /* Search Overlay */
-        .search-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(17, 24, 39, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 10vh;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition-normal);
-        }
-
-        .search-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .search-box {
-            width: 90%;
-            max-width: 600px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 1.5rem 1.2rem 3.5rem;
-            border-radius: 16px;
-            border: 2px solid var(--primary);
-            background: white;
-            font-size: 1.2rem;
-            font-family: var(--font-body);
-            outline: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .search-icon-inside {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.3rem;
-            color: var(--text-muted);
-        }
-
-        .close-search {
-            position: absolute;
-            right: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
         /* ==========================================================================
            2. HERO SECTION
            ========================================================================== */
@@ -467,7 +407,6 @@
             background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, rgba(236, 72, 153, 0.03) 90%);
         }
 
-        /* Grid Overlay & Background FX */
         .bg-grid {
             position: absolute;
             inset: 0;
@@ -532,14 +471,6 @@
             color: var(--text-muted);
             margin-bottom: 2.5rem;
             line-height: 1.7;
-        }
-
-        /* Particle Canvas */
-        #particles-canvas {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
         }
 
         /* ==========================================================================
@@ -1067,7 +998,6 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <canvas id="particles-canvas"></canvas>
         <div class="bg-grid"></div>
         <div class="hero-glow-1"></div>
         <div class="hero-glow-2"></div>
@@ -1111,9 +1041,9 @@
     <section class="team-section" id="team">
         <div class="container">
             <div class="section-title-wrap reveal">
-                <span class="retro-badge">Our People</span>
-                <h2 class="section-title">Meet the Team</h2>
-                <p class="section-subtitle">Driven by passion, united by purpose — 12 students from CSE (AI) bringing ASRC to life.</p>
+                <span class="retro-badge">Contributors</span>
+                <h2 class="section-title">The Brains & Builders</h2>
+                <p class="section-subtitle">Meet the core team of developers, designers, and managers crafting ASRC.</p>
             </div>
 
             <!-- Dynamic Grid Container -->
@@ -1223,64 +1153,6 @@
                 ripple.style.top = (e.clientY - rect.top) + 'px';
                 this.appendChild(ripple);
             });
-        });
-
-        // Particle Canvas Background
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 50;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-
-        animateParticles();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
         });
     </script>
 </body>

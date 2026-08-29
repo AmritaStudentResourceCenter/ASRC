@@ -842,99 +842,7 @@
         }
 
         /* ==========================================================================
-           5. TIMELINE SECTION
-           ========================================================================== */
-        .timeline-section {
-            padding: 6rem 0;
-            background: var(--bg-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-container {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline-track {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 2rem 1rem 3rem 1rem;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-        }
-
-        .timeline-track::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .timeline-track::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        .timeline-item {
-            min-width: 280px;
-            max-width: 280px;
-            scroll-snap-align: start;
-            position: relative;
-            padding-top: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.08);
-        }
-
-        .timeline-node {
-            position: absolute;
-            top: -6px;
-            left: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 0 12px var(--primary);
-            transition: var(--transition-normal);
-        }
-
-        .timeline-item:hover .timeline-node {
-            background: var(--retro-pink);
-            box-shadow: 0 0 16px var(--retro-pink);
-            transform: scale(1.3);
-        }
-
-        .timeline-card {
-            padding: 1.5rem;
-            height: 100%;
-        }
-
-        .timeline-date {
-            font-family: var(--font-head);
-            font-size: 0.85rem;
-            color: var(--retro-pink);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* ==========================================================================
-           6. MISSION SECTION
+           5. MISSION SECTION
            ========================================================================== */
         .mission-section {
             padding: 7rem 0;
@@ -1000,471 +908,173 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.08); opacity: 1; }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
-        .mission-text-content h2 {
-            font-size: 2.5rem;
-            line-height: 1.2;
+        .mission-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .mission-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
         }
 
-        .mission-quote {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            border-left: 4px solid var(--primary);
-            padding-left: 1.25rem;
-        }
-
         /* ==========================================================================
-           7. CORE VALUES SECTION
-           ========================================================================== */
-        .values-section {
-            padding: 6rem 0;
-            background: var(--bg-light);
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .value-card {
-            padding: 2rem;
-            transition: var(--transition-normal);
-        }
-
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
-            border-color: var(--primary);
-        }
-
-        .value-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 14px;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-            transition: var(--transition-normal);
-        }
-
-        .value-card:hover .value-icon {
-            background: var(--primary);
-            color: white;
-            box-shadow: var(--neon-glow-blue);
-        }
-
-        .value-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .value-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* ==========================================================================
-           8. TECHNOLOGIES USED
-           ========================================================================== */
-        .tech-section {
-            padding: 6rem 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 1.5rem;
-        }
-
-        .tech-card {
-            padding: 1.5rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-            transition: var(--transition-normal);
-        }
-
-        .tech-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--secondary);
-            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
-        }
-
-        .tech-icon {
-            font-size: 2.5rem;
-        }
-
-        .tech-name {
-            font-family: var(--font-head);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        /* Dynamic Tech Colors */
-        .tech-html { color: #E34F26; }
-        .tech-css { color: #1572B6; }
-        .tech-js { color: #F7DF1E; }
-        .tech-git { color: #F05032; }
-        .tech-github { color: #181717; }
-        .tech-pages { color: #222222; }
-
-        /* ==========================================================================
-           9. CONTRIBUTORS MARQUEE
-           ========================================================================== */
-        .marquee-section {
-            padding: 4rem 0;
-            background: var(--text-dark);
-            color: white;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .marquee-title {
-            text-align: center;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .marquee-container {
-            display: flex;
-            width: 100%;
-            overflow: hidden;
-            user-select: none;
-        }
-
-        .marquee-content {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: space-around;
-            min-width: 100%;
-            gap: 2rem;
-            animation: scroll 30s linear infinite;
-        }
-
-        .marquee-container:hover .marquee-content {
-            animation-play-state: paused;
-        }
-
-        .marquee-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: var(--font-head);
-        }
-
-        .marquee-item img {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-        }
-
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
-        }
-
-        /* ==========================================================================
-           10. FUN FACTS SECTION
-           ========================================================================== */
-        .facts-section {
-            padding: 6rem 0;
-            background: var(--bg-light);
-        }
-
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .fact-card {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: var(--transition-normal);
-        }
-
-        .fact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--retro-pink);
-            box-shadow: var(--neon-glow-pink);
-        }
-
-        .fact-emoji {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .fact-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        /* ==========================================================================
-           11. CALL TO ACTION & FOOTER
+           6. CTA SECTION
            ========================================================================== */
         .cta-section {
             padding: 7rem 0;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(236, 72, 153, 0.06));
         }
 
         .cta-box {
-            padding: 4rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
-            border: 1px solid rgba(37, 99, 235, 0.15);
-            position: relative;
+            padding: 3rem 2rem;
         }
 
         .cta-title {
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
+            color: var(--text-dark);
         }
 
         .cta-desc {
-            font-family: var(--font-sub);
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
             max-width: 600px;
-            margin: 0 auto 2rem auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
             display: flex;
-            justify-content: center;
             gap: 1rem;
-        }
-
-        .footer {
-            background: #0B0F17;
-            color: white;
-            padding: 4rem 0 2rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .footer-desc {
-            color: #9CA3AF;
-            font-size: 0.95rem;
-            max-width: 300px;
-        }
-
-        .footer-heading {
-            font-family: var(--font-head);
-            font-size: 1.1rem;
-            margin-bottom: 1.25rem;
-            color: white;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-link {
-            color: #9CA3AF;
-            font-size: 0.9rem;
-            transition: var(--transition-fast);
-        }
-
-        .footer-link:hover {
-            color: var(--secondary);
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            color: #6B7280;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .heart {
-            color: var(--retro-pink);
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         /* ==========================================================================
-           12. RESPONSIVE BREAKPOINTS
+           7. FOOTER
            ========================================================================== */
-        @media (max-width: 1024px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           8. RESPONSIVE
+           ========================================================================== */
+        @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .tech-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .facts-grid {
+            
+            .team-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hero-title {
-                font-size: 3rem;
-            }
-        }
 
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: white;
-                flex-direction: column;
-                justify-content: center;
-                transition: var(--transition-normal);
-            }
-            .nav-menu.active {
-                left: 0;
-            }
-            .mobile-toggle {
-                display: block;
-            }
             .mission-grid {
                 grid-template-columns: 1fr;
             }
+
             .hero-title {
-                font-size: 2.3rem;
+                font-size: 2.5rem;
             }
-            .cta-title {
-                font-size: 2rem;
+
+            .section-title {
+                font-size: 1.8rem;
             }
+
             .cta-buttons {
                 flex-direction: column;
             }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
+
+            .cta-buttons .btn {
+                width: 100%;
             }
         }
 
         @media (max-width: 480px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            .values-grid {
+
+            .team-grid {
                 grid-template-columns: 1fr;
             }
-            .tech-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+            .nav-menu {
+                gap: 1rem;
             }
-            .facts-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
+
+            .hero-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- Mouse Glow Effect -->
-    <div id="cursor-glow"></div>
-
     <!-- Page Loader -->
     <div id="loader">
         <div class="loader-spinner"></div>
-        <div class="loader-text">ASRC LABS</div>
+        <div class="loader-text">Loading...</div>
     </div>
 
-    <!-- Search Overlay -->
-    <div class="search-overlay" id="searchOverlay">
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass search-icon-inside"></i>
-            <input type="text" class="search-input" placeholder="Search resources, notes, team...">
-            <button class="close-search" id="closeSearch"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-    </div>
+    <!-- Cursor Glow Effect -->
+    <div id="cursor-glow"></div>
 
-    <!-- Navbar -->
+    <!-- Navigation Bar -->
     <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                <span>ASRC</span>
-            </a>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#https://amritastudentresourcecenter.github.io/ASRC/" class="nav-link">Home</a></li>
-                <li><a href="#" class="nav-link">Lecture Notes</a></li>
-                <li><a href="#" class="nav-link">Syllabus</a></li>
-                <li><a href="#" class="nav-link">Campus Resources</a></li>
-                <li><a href="#" class="nav-link active">About Us</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <button class="nav-icon-btn" id="searchBtn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <a href="https://github.com" target="_blank" class="github-btn">
-                    <i class="fa-brands fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span>ASRC</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="#team" class="nav-link">Team</a></li>
+                    <li><a href="#mission" class="nav-link">Mission</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://github.com/AmritaStudentResourceCenter/ASRC" target="_blank" class="github-btn">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
+        <canvas id="particles-canvas"></canvas>
         <div class="bg-grid"></div>
         <div class="hero-glow-1"></div>
         <div class="hero-glow-2"></div>
-        <canvas id="particles-canvas"></canvas>
-
-        <div class="container hero-content">
-            <span class="retro-badge reveal">System Status: Operational</span>
-            <h1 class="hero-title reveal">Meet the Team Behind ASRC</h1>
-            <p class="hero-subtitle reveal">Built by students, for students. Together we're creating one place where every Amrita student can access notes, resources, and campus information.</p>
-            <div class="reveal">
-                <a href="#team" class="btn btn-primary ripple-btn">
-                    <span>Meet Our Team</span>
-                    <i class="fa-solid fa-arrow-down"></i>
-                </a>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">About Amrita Student Resource Centre</h1>
+                <p class="hero-subtitle">A platform built by students, for students — designed to simplify access to academic resources and campus information.</p>
             </div>
         </div>
     </section>
@@ -1474,24 +1084,24 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
-                    <div class="stat-number" data-target="12">0</div>
-                    <div class="stat-label">Team Members</div>
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Core Team Members</div>
                 </div>
                 <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-code-branch"></i></div>
-                    <div class="stat-number" data-target="100" data-prefix="" data-suffix="+">0</div>
-                    <div class="stat-label">Open Source Commits</div>
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Semesters Covered</div>
                 </div>
                 <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <div class="stat-number" data-target="500" data-suffix="+">0</div>
-                    <div class="stat-label">Hundreds of Resources</div>
+                    <div class="stat-icon">📖</div>
+                    <div class="stat-number">52+</div>
+                    <div class="stat-label">Subjects</div>
                 </div>
                 <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-rocket"></i></div>
-                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
-                    <div class="stat-label">Built with HTML CSS JS</div>
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Free Access</div>
                 </div>
             </div>
         </div>
@@ -1501,9 +1111,9 @@
     <section class="team-section" id="team">
         <div class="container">
             <div class="section-title-wrap reveal">
-                <span class="retro-badge">Contributors</span>
-                <h2 class="section-title">The Brains & Builders</h2>
-                <p class="section-subtitle">Meet the core team of developers, designers, and managers crafting ASRC.</p>
+                <span class="retro-badge">Our People</span>
+                <h2 class="section-title">Meet the Team</h2>
+                <p class="section-subtitle">Driven by passion, united by purpose — 12 students from CSE (AI) bringing ASRC to life.</p>
             </div>
 
             <!-- Dynamic Grid Container -->
@@ -1511,218 +1121,26 @@
         </div>
     </section>
 
-    <!-- Timeline Section -->
-    <section class="timeline-section">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Roadmap</span>
-                <h2 class="section-title">Project Timeline</h2>
-                <p class="section-subtitle">Our journey from an idea to a fully functioning student ecosystem.</p>
-            </div>
-
-            <div class="timeline-container reveal">
-                <div class="timeline-track">
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 1</div>
-                            <h3 class="timeline-title">Idea Created</h3>
-                            <p class="timeline-desc">Identified core student struggles in obtaining centralized notes.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 2</div>
-                            <h3 class="timeline-title">Repo Initialized</h3>
-                            <p class="timeline-desc">Created the open-source GitHub organization & architecture.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 3</div>
-                            <h3 class="timeline-title">UI/UX Development</h3>
-                            <p class="timeline-desc">Designed retro-modern glassmorphism design system.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 4</div>
-                            <h3 class="timeline-title">Lecture Notes Added</h3>
-                            <p class="timeline-desc">Cataloged verified lecture notes across all engineering departments.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 5</div>
-                            <h3 class="timeline-title">Syllabus Integration</h3>
-                            <p class="timeline-desc">Added up-to-date curriculum outlines for quick reference.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 6</div>
-                            <h3 class="timeline-title">Campus Resources</h3>
-                            <p class="timeline-desc">Integrated campus announcements, bus timings, and portals.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">FUTURE</div>
-                            <h3 class="timeline-title">Future AI Assistant</h3>
-                            <p class="timeline-desc">Integrating an AI search assistant to query academic notes instant.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Mission Section -->
-    <section class="mission-section">
+    <section class="mission-section" id="mission">
         <div class="container">
             <div class="mission-grid">
-                <div class="mission-illustration reveal">
-                    <div class="illustration-box glass-card">
+                <div class="mission-illustration">
+                    <div class="illustration-box">
                         <div class="retro-window-header">
                             <div class="window-btn btn-red"></div>
                             <div class="window-btn btn-yellow"></div>
                             <div class="window-btn btn-green"></div>
                         </div>
-                        <i class="fa-solid fa-bullseye mission-graphic-icon"></i>
+                        <div class="mission-graphic-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="mission-text-content reveal">
-                    <span class="retro-badge">Our Purpose</span>
-                    <h2>Empowering Academic Excellence Through Collaboration</h2>
-                    <blockquote class="mission-quote">
-                        "Our mission is to simplify student life by creating one centralized platform where every Amrita student can easily find notes, syllabus, resources, announcements, and useful campus information."
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Core Values -->
-    <section class="values-section">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Principles</span>
-                <h2 class="section-title">Core Values</h2>
-                <p class="section-subtitle">The guiding standards behind every line of code we ship.</p>
-            </div>
-
-            <div class="values-grid">
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                    <h3 class="value-title">Innovation</h3>
-                    <p class="value-desc">Constantly modernizing learning interfaces and data discovery tools.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
-                    <h3 class="value-title">Collaboration</h3>
-                    <p class="value-desc">Peer-to-peer contribution ecosystem driven by open communication.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-universal-access"></i></div>
-                    <h3 class="value-title">Accessibility</h3>
-                    <p class="value-desc">Free and open academic materials guaranteed for every student.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-people-group"></i></div>
-                    <h3 class="value-title">Community</h3>
-                    <p class="value-desc">Fostering cross-departmental growth and student support networks.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h3 class="value-title">Continuous Learning</h3>
-                    <p class="value-desc">Empowering creators to level up technical and collaborative skillsets.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-brands fa-open-source"></i></div>
-                    <h3 class="value-title">Open Source</h3>
-                    <p class="value-desc">100% transparent development with public GitHub repositories.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technologies Used -->
-    <section class="tech-section">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Tech Stack</span>
-                <h2 class="section-title">Engineered With</h2>
-                <p class="section-subtitle">Clean, lightweight, dependency-free foundational web tech.</p>
-            </div>
-
-            <div class="tech-grid">
-                <div class="glass-card tech-card reveal">
-                    <i class="fa-brands fa-html5 tech-icon tech-html"></i>
-                    <span class="tech-name">HTML5</span>
-                </div>
-                <div class="glass-card tech-card reveal">
-                    <i class="fa-brands fa-css3-alt tech-icon tech-css"></i>
-                    <span class="tech-name">CSS3</span>
-                </div>
-                <div class="glass-card tech-card reveal">
-                    <i class="fa-brands fa-square-js tech-icon tech-js"></i>
-                    <span class="tech-name">JavaScript</span>
-                </div>
-                <div class="glass-card tech-card reveal">
-                    <i class="fa-brands fa-git-alt tech-icon tech-git"></i>
-                    <span class="tech-name">Git</span>
-                </div>
-                <div class="glass-card tech-card reveal">
-                    <i class="fa-brands fa-github tech-icon tech-github"></i>
-                    <span class="tech-name">GitHub</span>
-                </div>
-                <div class="glass-card tech-card reveal">
-                    <i class="fa-solid fa-globe tech-icon tech-pages"></i>
-                    <span class="tech-name">GitHub Pages</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Continuous Contributors Marquee -->
-    <section class="marquee-section">
-        <div class="marquee-title">Active Platform Builders</div>
-        <div class="marquee-container">
-            <div class="marquee-content" id="marqueeContent1"></div>
-            <div class="marquee-content" id="marqueeContent2" aria-hidden="true"></div>
-        </div>
-    </section>
-
-    <!-- Fun Facts Section -->
-    <section class="facts-section">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Trivia</span>
-                <h2 class="section-title">Fun Facts</h2>
-            </div>
-
-            <div class="facts-grid">
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">☕</div>
-                    <div class="fact-title">Countless Cups of Coffee</div>
-                </div>
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">💻</div>
-                    <div class="fact-title">Hundreds of Commits</div>
-                </div>
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">🎯</div>
-                    <div class="fact-title">One Common Goal</div>
-                </div>
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">📖</div>
-                    <div class="fact-title">100% Student Driven</div>
+                <div class="mission-content reveal">
+                    <h3>Our Mission</h3>
+                    <p class="mission-text">At ASRC, we believe every student deserves easy access to well-organized, reliable academic resources. We're building a centralized platform that transforms how students find, share, and learn from lecture notes and campus information.</p>
+                    <p class="mission-text">Started as a simple idea to solve a real problem, ASRC has grown into a student-driven initiative committed to supporting the academic journey of CSE (AI) students at Amrita.</p>
                 </div>
             </div>
         </div>
@@ -1735,13 +1153,13 @@
                 <h2 class="cta-title">Want to Contribute?</h2>
                 <p class="cta-desc">ASRC is built by students like you. Whether fixing a typo, adding lecture notes, or introducing new features, your contributions are welcome!</p>
                 <div class="cta-buttons">
-                    <a href="https://github.com" target="_blank" class="btn btn-primary ripple-btn">
+                    <a href="https://github.com/AmritaStudentResourceCenter/ASRC" target="_blank" class="btn btn-primary ripple-btn">
                         <i class="fa-brands fa-github"></i>
                         <span>View GitHub Repository</span>
                     </a>
-                    <a href="#" class="btn btn-secondary ripple-btn">
-                        <i class="fa-solid fa-user-plus"></i>
-                        <span>Join the Team</span>
+                    <a href="https://github.com/AmritaStudentResourceCenter/ASRC/issues" target="_blank" class="btn btn-secondary ripple-btn">
+                        <i class="fas fa-code-branch"></i>
+                        <span>See Open Issues</span>
                     </a>
                 </div>
             </div>
@@ -1749,486 +1167,121 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <a href="#" class="logo footer-logo">
-                        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <span>ASRC</span>
-                    </a>
-                    <p class="footer-desc">Centralized resource platform providing seamless academic materials access for all Amrita students.</p>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Home</a>
-                        <a href="#" class="footer-link">Lecture Notes</a>
-                        <a href="#" class="footer-link">Syllabus</a>
-                        <a href="#" class="footer-link">Campus Resources</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Community</h4>
-                    <div class="footer-links">
-                        <a href="https://github.com" target="_blank" class="footer-link">GitHub Repo</a>
-                        <a href="#" class="footer-link">Contributor Guide</a>
-                        <a href="#" class="footer-link">Issue Tracker</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Contact</h4>
-                    <div class="footer-links">
-                        <a href="mailto:asrc@amrita.edu" class="footer-link">asrc@amrita.edu</a>
-                        <a href="#" class="footer-link">Amrita Vishwa Vidyapeetham</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div>© 2026 Amrita Student Resource Center. Open Source Software.</div>
-                <div>Made with <i class="fa-solid fa-heart heart"></i> by Amrita Students</div>
-            </div>
+            <p>&copy; 2026 Amrita Student Resource Centre. Made by students, for students.</p>
+            <p>Built with <span style="color: var(--retro-pink);">❤</span> for the CSE (AI) community at Amrita Vishwa Vidyapeetham.</p>
         </div>
     </footer>
 
-    <!-- Team Member Details Modal Overlay -->
-    <div class="modal-overlay" id="teamModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-header">
-                <img src="" alt="" class="modal-img" id="modalImg">
-                <div class="modal-title-wrap">
-                    <h3 id="modalName">Member Name</h3>
-                    <p id="modalRole">Member Role</p>
-                </div>
-            </div>
-            <div class="modal-section">
-                <h4>About</h4>
-                <p id="modalBio">Member bio content goes here.</p>
-            </div>
-            <div class="modal-section">
-                <h4>Key Contributions</h4>
-                <p id="modalContribution">Member contributions detail.</p>
-            </div>
-            <div class="modal-section">
-                <h4>Skills & Tools</h4>
-                <div class="skills-tags" id="modalSkills"></div>
-            </div>
-            <div class="social-links" style="margin-top: 1.5rem;" id="modalSocials"></div>
-        </div>
-    </div>
-
-    <!-- ==========================================================================
-       JAVASCRIPT ARCHITECTURE
-       ========================================================================== -->
     <script>
-        /* ==========================================================================
-           1. SINGLE-SOURCE-OF-TRUTH TEAM DATA ARRAY
-           ========================================================================== */
-        const teamMembers = [
-            {
-                id: 1,
-                name: "Diya",
-                role: "Project Lead",
-                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
-                bio: "Visionary student leader steering overall platform strategy, architecture, and deployment schedules.",
-                contribution: "Architected core repository structures and directed inter-departmental workflows.",
-                skills: ["System Architecture", "Project Management", "Git", "Strategic Planning"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:aarav@amrita.edu"
-            },
-            {
-                id: 2,
-
-                name: "Govind",
-                role: "Frontend Developer",
-                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400",
-                bio: "Crafts responsive, sleek components and smooth glassmorphism interfaces.",
-                contribution: "Built UI component structures, responsive layouts, and interactive animations.",
-                skills: ["HTML5", "CSS Grid", "JavaScript ES6+", "Animation"],
-                github: "https://github.com/Govi4204",
-                linkedin: "https://www.linkedin.com/in/govind-krishnan-8982092aa/",
-                email: "mailto:govikrishnan4204@gmail.com"
-
-
-            },
-            {
-                id: 3,
-                name: "Adyakiran",
-                role: "Frontend Developer",
-                image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400",
-                bio: "Passionate about micro-interactions, responsive optimizations, and web accessibility.",
-                contribution: "Implemented responsive web breakpoints, accessibility standards, and scroll effects.",
-                skills: ["JavaScript", "WAI-ARIA", "CSS Architecture", "Performance", "C", "Python"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:aditya@amrita.edu"
-            },
-            {
-                id: 4,
-                name: "names",
-                role: "Backend Developer",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
-                bio: "Engineers data pipelines, search engines, and automated static site deployment scripts.",
-                contribution: "Developed resource indexing pipelines and optimized payload delivery.",
-                skills: ["Node.js", "Python", "Data Structure", "API Design"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:rohan@amrita.edu"
-            },
-            {
-                id: 5,
-                name: "Kavya Nair",
-                role: "Backend Developer",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400",
-                bio: "Focuses on static resource compilation and automated cloud synchronization pipelines.",
-                contribution: "Integrated automated verification flows for uploaded lecture content.",
-                skills: ["Python", "JSON Schemas", "CI/CD", "Serverless"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:kavya@amrita.edu"
-            },
-            {
-                id: 6,
-                name: "Ananya Pillai",
-                role: "UI/UX Designer",
-                image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=400",
-                bio: "Designs aesthetic user journeys, retro-futuristic themes, and fluid glass components.",
-                contribution: "Created the glassmorphic design system and high-fidelity prototype layouts.",
-                skills: ["Figma", "UI/UX", "Color Theory", "Prototyping"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:ananya@amrita.edu"
-            },
-            {
-                id: 7,
-                name: "Siddharth Das",
-                role: "Content Manager",
-                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
-                bio: "Curates, categorizes, and verifies course materials across all engineering branches.",
-                contribution: "Organized over 500+ lecture notes and previous year question repositories.",
-                skills: ["Content Management", "Curriculum Mapping", "Editing"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:siddharth@amrita.edu"
-            },
-            {
-                id: 8,
-                name: "Meera Krishnan",
-                role: "Documentation Lead",
-                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
-                bio: "Maintains comprehensive technical docs, contributor guidelines, and release logs.",
-                contribution: "Drafted open-source contribution guidelines and comprehensive README docs.",
-                skills: ["Technical Writing", "Markdown", "GitDocs", "Open Source Strategy"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:meera@amrita.edu"
-            },
-            {
-                id: 9,
-                name: "Varun Chandran",
-                role: "Testing Lead",
-                image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
-                bio: "Ensures cross-browser compatibility, link integrity, and optimal mobile experience.",
-                contribution: "Executed cross-device responsiveness audits and link verification routines.",
-                skills: ["QA Testing", "Cross-Browser Audit", "Performance Tuning"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:varun@amrita.edu"
-            },
-            {
-                id: 10,
-                name: "Sneha Hegde",
-                role: "GitHub Manager",
-                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
-                bio: "Oversees code review approvals, pull request merges, and issue branch workflows.",
-                contribution: "Managed GitHub organization permissions and repository deployment flows.",
-                skills: ["GitHub Actions", "Git Strategy", "Code Review", "DevOps"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:sneha@amrita.edu"
-            },
-            {
-                id: 11,
-                name: "Rahul Nambiar",
-                role: "Resource Manager",
-                image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=400",
-                bio: "Coordinates with student class representatives to acquire syllabus updates.",
-                contribution: "Established campus channels for fast file aggregation.",
-                skills: ["Data Collection", "Resource Audit", "Communication"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:rahul@amrita.edu"
-            },
-            {
-                id: 12,
-                name: "Pooja Suresh",
-                role: "Community Coordinator",
-                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400",
-                bio: "Engages with student communities, gathers feedback, and runs contributor workshops.",
-                contribution: "Organized open-source hack nights and student onboarding drives.",
-                skills: ["Community Management", "Event Planning", "Public Relations"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:pooja@amrita.edu"
-            }
-        ];
-
-        /* ==========================================================================
-           2. DYNAMIC DOM RENDERING & MODAL LOGIC
-           ========================================================================== */
-        document.addEventListener('DOMContentLoaded', () => {
-            renderTeamCards();
-            renderMarquee();
-            initScrollAnimations();
-            initCounterAnimations();
-            initParticleBackground();
-            initInteractions();
-            
-            // Remove Loader
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
+        // Page Loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
                 loader.style.opacity = '0';
                 loader.style.visibility = 'hidden';
-            }, 500);
+            }
         });
 
-        // Render Team Members into Grid
-        function renderTeamCards() {
-            const teamGrid = document.getElementById('teamGrid');
-            teamGrid.innerHTML = teamMembers.map(member => `
-                <div class="glass-card team-card reveal" onclick="openModal(${member.id})">
-                    <div class="member-img-wrap">
-                        <img src="${member.image}" alt="${member.name}" class="member-img" loading="lazy">
-                    </div>
-                    <h3 class="member-name">${member.name}</h3>
-                    <div class="member-role">${member.role}</div>
-                    <p class="member-bio">${member.bio}</p>
-                    <div class="social-links" onclick="event.stopPropagation()">
-                        <a href="${member.github}" target="_blank" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="${member.linkedin}" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="${member.email}" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Render Contributors Continuous Marquee
-        function renderMarquee() {
-            const marquee1 = document.getElementById('marqueeContent1');
-            const marquee2 = document.getElementById('marqueeContent2');
-            
-            const html = teamMembers.map(m => `
-                <div class="marquee-item">
-                    <img src="${m.image}" alt="${m.name}">
-                    <span>${m.name}</span>
-                </div>
-            `).join('');
-
-            marquee1.innerHTML = html;
-            marquee2.innerHTML = html;
-        }
-
-        // Modal Functionality
-        const modal = document.getElementById('teamModal');
-        const modalClose = document.getElementById('modalClose');
-
-        function openModal(id) {
-            const member = teamMembers.find(m => m.id === id);
-            if (!member) return;
-
-            document.getElementById('modalImg').src = member.image;
-            document.getElementById('modalName').textContent = member.name;
-            document.getElementById('modalRole').textContent = member.role;
-            document.getElementById('modalBio').textContent = member.bio;
-            document.getElementById('modalContribution').textContent = member.contribution;
-            
-            const skillsWrap = document.getElementById('modalSkills');
-            skillsWrap.innerHTML = member.skills.map(s => `<span class="skill-tag">${s}</span>`).join('');
-
-            const socialsWrap = document.getElementById('modalSocials');
-            socialsWrap.innerHTML = `
-                <a href="${member.github}" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                <a href="${member.linkedin}" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="${member.email}" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
-            `;
-
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
 
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        /* ==========================================================================
-           3. INTERACTION CONTROLLERS & EFFECTS
-           ========================================================================== */
-        function initInteractions() {
-            // Navbar Scroll Effect
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 30) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
             });
+        }, { threshold: 0.1 });
 
-            // Mobile Navigation Toggle
-            const mobileToggle = document.getElementById('mobileToggle');
-            const navMenu = document.getElementById('navMenu');
-            mobileToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
+        reveals.forEach(reveal => observer.observe(reveal));
+
+        // Cursor glow effect
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // Ripple effect for buttons
+        document.querySelectorAll('.ripple-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = (e.clientX - rect.left) + 'px';
+                ripple.style.top = (e.clientY - rect.top) + 'px';
+                this.appendChild(ripple);
             });
+        });
 
-            // Search Modal Toggle
-            const searchBtn = document.getElementById('searchBtn');
-            const searchOverlay = document.getElementById('searchOverlay');
-            const closeSearch = document.getElementById('closeSearch');
+        // Particle Canvas Background
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-            searchBtn.addEventListener('click', () => searchOverlay.classList.add('active'));
-            closeSearch.addEventListener('click', () => searchOverlay.classList.remove('active'));
+        const particles = [];
+        const particleCount = 50;
 
-            // Custom Glow Cursor Movement
-            const cursorGlow = document.getElementById('cursor-glow');
-            window.addEventListener('mousemove', (e) => {
-                cursorGlow.style.left = e.clientX + 'px';
-                cursorGlow.style.top = e.clientY + 'px';
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
             });
-
-            // Ripple Effect on Buttons
-            document.querySelectorAll('.btn').forEach(button => {
-                button.addEventListener('click', function (e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    ripple.style.left = `${x}px`;
-                    ripple.style.top = `${y}px`;
-
-                    this.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 600);
-                });
-            });
+            requestAnimationFrame(animateParticles);
         }
 
-        /* ==========================================================================
-           4. SCROLL & ANIMATION CONTROLLERS
-           ========================================================================== */
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
+        animateParticles();
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        }
-
-        // Counter Up Animation
-        function initCounterAnimations() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            let animated = false;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !animated) {
-                        statNumbers.forEach(stat => {
-                            const target = parseInt(stat.getAttribute('data-target'));
-                            const prefix = stat.getAttribute('data-prefix') || '';
-                            const suffix = stat.getAttribute('data-suffix') || '';
-                            let current = 0;
-                            const increment = Math.ceil(target / 40);
-
-                            const updateCounter = () => {
-                                current += increment;
-                                if (current >= target) {
-                                    stat.innerText = prefix + target + suffix;
-                                } else {
-                                    stat.innerText = prefix + current + suffix;
-                                    setTimeout(updateCounter, 30);
-                                }
-                            };
-                            updateCounter();
-                        });
-                        animated = true;
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            if (statNumbers.length > 0) {
-                observer.observe(statNumbers[0].parentElement.parentElement);
-            }
-        }
-
-        /* ==========================================================================
-           5. CANVAS FLOATING PARTICLES
-           ========================================================================== */
-        function initParticleBackground() {
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-
-            function resizeCanvas() {
-                canvas.width = canvas.parentElement.clientWidth;
-                canvas.height = canvas.parentElement.clientHeight;
-            }
-
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            const particles = [];
-            const particleCount = 45;
-
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 2 + 1,
-                    color: i % 2 === 0 ? 'rgba(37, 99, 235, 0.3)' : 'rgba(236, 72, 153, 0.3)',
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5
-                });
-            }
-
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                particles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.fill();
-                });
-
-                requestAnimationFrame(animateParticles);
-            }
-
-            animateParticles();
-        }
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>

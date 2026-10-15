@@ -1,2174 +1,848 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" coantent="width=device-width, initial-scale=1.0">
-    <title>About Us - Amrita Student Resource Center (ASRC)</title>
-    <!-- Google Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Amrita Student Resource Center (ASRC)</title>
+    <meta name="description" content="A unified, student-built archive for faculty lecture notes, syllabus guides, and academic materials at Amrita.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Newsreader (Editorial Serif), Plus Jakarta Sans (Clean UI Sans), JetBrains Mono (Technical Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* ==========================================================================
-           0. CSS VARIABLES & RESET
-           ========================================================================== */
-        :root {
-            --bg-main: #FFFFFF;
-            --primary: #2563EB;
-            --secondary: #06B6D4;
-            --accent: #7C3AED;
-            --retro-pink: #EC4899;
-            --text-dark: #111827;
-            --text-muted: #4B5563;
-            --bg-light: #F8FAFC;
-            
-            --font-head: 'Space Grotesk', sans-serif;
-            --font-sub: 'Poppins', sans-serif;
-            --font-body: 'Inter', sans-serif;
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.8); 
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            --neon-glow-blue: 0 0 15px rgba(37, 99, 235, 0.4);
-            --neon-glow-pink: 0 0 15px rgba(236, 72, 153, 0.4);
-            
-            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--text-dark);
-            background-color: var(--bg-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-            position: relative;
-        }
-
-        /* Custom Cursor Glow */
-        #cursor-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.15), rgba(124, 58, 237, 0.08), transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: transform 0.05s ease;
-        }
-
-        /* Typography Defaults */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-head);
-            letter-spacing: -0.02em;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Reusable Components */
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, var(--text-dark), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title-wrap {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-subtitle {
-            font-family: var(--font-sub);
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .retro-badge {
-            display: inline-block;
-            padding: 0.35rem 1rem;
-            border-radius: 50px;
-            font-family: var(--font-head);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(236, 72, 153, 0.1);
-            color: var(--retro-pink);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            margin-bottom: 1rem;
-            box-shadow: 0 0 10px rgba(236, 72, 153, 0.1);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.85rem 1.75rem;
-            font-family: var(--font-head);
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-            border: none;
-            outline: none;
-            z-index: 1;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 6px 25px rgba(124, 58, 237, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--text-dark);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Ripple Effect */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(0);
-            animation: ripple-animation 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        paper: {
+                            DEFAULT: '#FAF8F5',
+                            dark: '#111110',
+                        },
+                        surface: {
+                            DEFAULT: '#FFFFFF',
+                            dark: '#191917',
+                        },
+                        ink: {
+                            DEFAULT: '#141413',
+                            muted: '#57534E',
+                            faint: '#A8A29E',
+                            dark: '#F5F5F4',
+                            darkMuted: '#A8A29E'
+                        },
+                        amrita: {
+                            DEFAULT: '#9B1B30', // Refined Amrita Crimson/Burgundy
+                            hover: '#7D1526',
+                            light: '#FDF2F4',
+                            darkBg: '#2C1217',
+                            darkText: '#FCA5A5'
+                        },
+                        border: {
+                            DEFAULT: '#E7E5E4',
+                            dark: '#262624'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
             }
         }
+    </script>
 
-        /* Glassmorphism Card Style */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            box-shadow: var(--glass-shadow);
+    <style>
+        /* Editorial base styling & subtle grain texture */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF8F5;
+            color: #141413;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .dark body {
+            background-color: #111110;
+            color: #F5F5F4;
         }
 
-        /* Scroll Animation Target */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Page Loader */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background: #FFFFFF;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(37, 99, 235, 0.1);
-            border-left-color: var(--primary);
-            border-top-color: var(--retro-pink);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .loader-text {
-            margin-top: 1rem;
-            font-family: var(--font-head);
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--text-dark);
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ==========================================================================
-           1. NAVBAR
-           ========================================================================== */
-        .navbar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition-normal);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .navbar.scrolled {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 80px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: var(--font-head);
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--text-dark);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--retro-pink));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            box-shadow: var(--neon-glow-blue);
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            font-family: var(--font-sub);
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            transition: var(--transition-fast);
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--retro-pink));
-            transition: var(--transition-normal);
-            border-radius: 2px;
-        }
-
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-icon-btn {
-            background: none;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: var(--transition-fast);
-            font-size: 1.1rem;
-        }
-
-        .nav-icon-btn:hover {
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--primary);
-        }
-
-        .github-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--text-dark);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            font-family: var(--font-head);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: var(--transition-normal);
-        }
-
-        .github-btn:hover {
-            background: #000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            cursor: pointer;
-        }
-
-        /* Search Overlay */
-        .search-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(17, 24, 39, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 10vh;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition-normal);
-        }
-
-        .search-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .search-box {
-            width: 90%;
-            max-width: 600px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 1.5rem 1.2rem 3.5rem;
-            border-radius: 16px;
-            border: 2px solid var(--primary);
-            background: white;
-            font-size: 1.2rem;
-            font-family: var(--font-body);
-            outline: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .search-icon-inside {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.3rem;
-            color: var(--text-muted);
-        }
-
-        .close-search {
-            position: absolute;
-            right: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        /* ==========================================================================
-           2. HERO SECTION
-           ========================================================================== */
-        .hero {
-            position: relative;
-            padding: 8rem 0 6rem 0;
-            overflow: hidden;
-            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, rgba(236, 72, 153, 0.03) 90%);
-        }
-
-        /* Grid Overlay & Background FX */
-        .bg-grid {
-            position: absolute;
-            inset: 0;
+        /* Subtle academic grid lines */
+        .editorial-grid {
             background-size: 40px 40px;
             background-image: 
-                linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-            pointer-events: none;
+                linear-gradient(to right, rgba(20, 20, 19, 0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(20, 20, 19, 0.035) 1px, transparent 1px);
         }
-
-        .hero-glow-1 {
-            position: absolute;
-            top: -100px;
-            right: -50px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
-            border-radius: 50%;
-            filter: blur(50px);
-            animation: float 8s ease-in-out infinite alternate;
-        }
-
-        .hero-glow-2 {
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.15), transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float 10s ease-in-out infinite alternate-reverse;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-30px) scale(1.1); }
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3.8rem;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #111827 0%, #2563EB 50%, #EC4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-family: var(--font-sub);
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-        }
-
-        /* Particle Canvas */
-        #particles-canvas {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* ==========================================================================
-           3. STATISTICS SECTION
-           ========================================================================== */
-        .stats-section {
-            padding: 3rem 0;
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .stat-card {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(37, 99, 235, 0.4);
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
-        }
-
-        .stat-icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.75rem;
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--retro-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-number {
-            font-family: var(--font-head);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-family: var(--font-sub);
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* ==========================================================================
-           4. TEAM SECTION
-           ========================================================================== */
-        .team-section {
-            padding: 7rem 0;
-            position: relative;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .team-card {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition-normal);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .team-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            transition: var(--transition-normal);
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
-        }
-
-        .team-card:hover::before {
-            background: linear-gradient(135deg, var(--primary), var(--retro-pink));
-        }
-
-            .member-img-wrap {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            margin-bottom: 1.25rem;
-            position: relative;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .member-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            background: #E5E7EB;
-        }
-
-
-    
-
-        .member-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: var(--text-dark);
-        }
-
-        .member-role {
-            font-family: var(--font-sub);
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .member-bio {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.5;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: auto;
-        }
-
-        .social-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.04);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-dark);
-            transition: var(--transition-fast);
-            font-size: 0.9rem;
-        }
-
-        .social-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Modal styling */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition-normal);
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .modal-content {
-            width: 100%;
-            max-width: 650px;
-            position: relative;
-            background: white;
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: scale(0.9);
-            transition: var(--transition-normal);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #F3F4F6;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition-fast);
-        }
-
-        .modal-close:hover {
-            background: #E5E7EB;
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-        }
-
-        .modal-title-wrap h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .modal-title-wrap p {
-            font-family: var(--font-sub);
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .modal-section {
-            margin-bottom: 1.25rem;
-        }
-
-        .modal-section h4 {
-            font-size: 1rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .modal-section p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .skills-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .skill-tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(37, 99, 235, 0.08);
-            color: var(--primary);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-family: var(--font-sub);
-            font-weight: 500;
-        }
-
-        /* ==========================================================================
-           5. TIMELINE SECTION
-           ========================================================================== */
-        .timeline-section {
-            padding: 6rem 0;
-            background: var(--bg-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-container {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline-track {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 2rem 1rem 3rem 1rem;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-        }
-
-        .timeline-track::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .timeline-track::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        .timeline-item {
-            min-width: 280px;
-            max-width: 280px;
-            scroll-snap-align: start;
-            position: relative;
-            padding-top: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.08);
-        }
-
-        .timeline-node {
-            position: absolute;
-            top: -6px;
-            left: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 0 12px var(--primary);
-            transition: var(--transition-normal);
-        }
-
-        .timeline-item:hover .timeline-node {
-            background: var(--retro-pink);
-            box-shadow: 0 0 16px var(--retro-pink);
-            transform: scale(1.3);
-        }
-
-        .timeline-card {
-            padding: 1.5rem;
-            height: 100%;
-        }
-
-        .timeline-date {
-            font-family: var(--font-head);
-            font-size: 0.85rem;
-            color: var(--retro-pink);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* ==========================================================================
-           6. MISSION SECTION
-           ========================================================================== */
-        .mission-section {
-            padding: 7rem 0;
-        }
-
-        .mission-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .mission-illustration {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .illustration-box {
-            width: 100%;
-            max-width: 450px;
-            height: 350px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(236, 72, 153, 0.05));
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .retro-window-header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 35px;
-            background: rgba(0, 0, 0, 0.04);
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-            gap: 6px;
-        }
-
-        .window-btn {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .btn-red { background: #EF4444; }
-        .btn-yellow { background: #F59E0B; }
-        .btn-green { background: #10B981; }
-
-        .mission-graphic-icon {
-            font-size: 5rem;
-            background: linear-gradient(135deg, var(--primary), var(--retro-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.08); opacity: 1; }
-        }
-
-        .mission-text-content h2 {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-
-        .mission-quote {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            border-left: 4px solid var(--primary);
-            padding-left: 1.25rem;
-        }
-
-        /* ==========================================================================
-           7. CORE VALUES SECTION
-           ========================================================================== */
-        .values-section {
-            padding: 6rem 0;
-            background: var(--bg-light);
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .value-card {
-            padding: 2rem;
-            transition: var(--transition-normal);
-        }
-
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
-            border-color: var(--primary);
-        }
-
-        .value-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 14px;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-            transition: var(--transition-normal);
-        }
-
-        .value-card:hover .value-icon {
-            background: var(--primary);
-            color: white;
-            box-shadow: var(--neon-glow-blue);
-        }
-
-        .value-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .value-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* ==========================================================================
-           8. TECHNOLOGIES USED
-           ========================================================================== */
-        .tech-section {
-            padding: 6rem 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 1.5rem;
-        }
-
-        .tech-card {
-            padding: 1.5rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-            transition: var(--transition-normal);
-        }
-
-        .tech-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--secondary);
-            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
-        }
-
-        .tech-icon {
-            font-size: 2.5rem;
-        }
-
-        .tech-name {
-            font-family: var(--font-head);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        /* Dynamic Tech Colors */
-        .tech-html { color: #E34F26; }
-        .tech-css { color: #1572B6; }
-        .tech-js { color: #F7DF1E; }
-        .tech-git { color: #F05032; }
-        .tech-github { color: #181717; }
-        .tech-pages { color: #222222; }
-
-        /* ==========================================================================
-           9. CONTRIBUTORS MARQUEE
-           ========================================================================== */
-        .marquee-section {
-            padding: 4rem 0;
-            background: var(--text-dark);
-            color: white;
-            overflow: hidden;
-            position: relative;
+        .dark .editorial-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
 
-        .marquee-title {
-            text-align: center;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* Custom subtle scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-
-        .marquee-container {
-            display: flex;
-            width: 100%;
-            overflow: hidden;
-            user-select: none;
-        }
-
-        .marquee-content {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: space-around;
-            min-width: 100%;
-            gap: 2rem;
-            animation: scroll 30s linear infinite;
-        }
-
-        .marquee-container:hover .marquee-content {
-            animation-play-state: paused;
-        }
-
-        .marquee-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: var(--font-head);
-        }
-
-        .marquee-item img {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-        }
-
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
-        }
-
-        /* ==========================================================================
-           10. FUN FACTS SECTION
-           ========================================================================== */
-        .facts-section {
-            padding: 6rem 0;
-            background: var(--bg-light);
-        }
-
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .fact-card {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: var(--transition-normal);
-        }
-
-        .fact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--retro-pink);
-            box-shadow: var(--neon-glow-pink);
-        }
-
-        .fact-emoji {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .fact-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        /* ==========================================================================
-           11. CALL TO ACTION & FOOTER
-           ========================================================================== */
-        .cta-section {
-            padding: 7rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
-            border: 1px solid rgba(37, 99, 235, 0.15);
-            position: relative;
+        ::-webkit-scrollbar-track {
+            background: transparent;
         }
-
-        .cta-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-desc {
-            font-family: var(--font-sub);
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .footer {
-            background: #0B0F17;
-            color: white;
-            padding: 4rem 0 2rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .footer-desc {
-            color: #9CA3AF;
-            font-size: 0.95rem;
-            max-width: 300px;
-        }
-
-        .footer-heading {
-            font-family: var(--font-head);
-            font-size: 1.1rem;
-            margin-bottom: 1.25rem;
-            color: white;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-link {
-            color: #9CA3AF;
-            font-size: 0.9rem;
-            transition: var(--transition-fast);
-        }
-
-        .footer-link:hover {
-            color: var(--secondary);
+        ::-webkit-scrollbar-thumb {
+            background: #D6D3D1;
+            border-radius: 4px;
         }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            color: #6B7280;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .heart {
-            color: var(--retro-pink);
-        }
-
-        /* ==========================================================================
-           12. RESPONSIVE BREAKPOINTS
-           ========================================================================== */
-        @media (max-width: 1024px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .tech-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .facts-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hero-title {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: white;
-                flex-direction: column;
-                justify-content: center;
-                transition: var(--transition-normal);
-            }
-            .nav-menu.active {
-                left: 0;
-            }
-            .mobile-toggle {
-                display: block;
-            }
-            .mission-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-title {
-                font-size: 2.3rem;
-            }
-            .cta-title {
-                font-size: 2rem;
-            }
-            .cta-buttons {
-                flex-direction: column;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-            }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #44403C;
         }
 
-        @media (max-width: 480px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            .tech-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .facts-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Editable outline indicator when in customize mode */
+        .editable-active [contenteditable="true"] {
+            outline: 1px dashed #9B1B30;
+            outline-offset: 3px;
+            border-radius: 3px;
+            background-color: rgba(155, 27, 48, 0.05);
+            cursor: text;
         }
     </style>
 </head>
-<body>
+<body class="bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark transition-colors duration-200 selection:bg-amrita selection:text-white">
 
-    <!-- Mouse Glow Effect -->
-    <div id="cursor-glow"></div>
-
-    <!-- Page Loader -->
-    <div id="loader">
-        <div class="loader-spinner"></div>
-        <div class="loader-text">ASRC LABS</div>
-    </div>
-
-    <!-- Search Overlay -->
-    <div class="search-overlay" id="searchOverlay">
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass search-icon-inside"></i>
-            <input type="text" class="search-input" placeholder="Search resources, notes, team...">
-            <button class="close-search" id="closeSearch"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-    </div>
-
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                <span>ASRC</span>
-            </a>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#https://amritastudentresourcecenter.github.io/ASRC/" class="nav-link">Home</a></li>
-                <li><a href="#" class="nav-link">Lecture Notes</a></li>
-                <li><a href="#" class="nav-link">Syllabus</a></li>
-                <li><a href="#" class="nav-link">Campus Resources</a></li>
-                <li><a href="#" class="nav-link active">About Us</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <button class="nav-icon-btn" id="searchBtn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <a href="https://github.com" target="_blank" class="github-btn">
-                    <i class="fa-brands fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars"></i></button>
+    <!-- Top Technical Index Bar -->
+    <div class="border-b border-border dark:border-border-dark bg-surface/60 dark:bg-surface-dark/60 backdrop-blur-sm text-xs font-mono text-ink-muted dark:text-ink-darkMuted">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="inline-block w-2 h-2 rounded-full bg-amrita"></span>
+                <span>DOC.REF // ASRC-MANIFESTO-2026</span>
+                <span class="hidden sm:inline text-ink-faint">|</span>
+                <span class="hidden sm:inline">STUDENT INITIATIVE</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="toggleEditModeBtn" onclick="toggleEditMode()" class="hover:text-amrita dark:hover:text-amrita-darkText transition-colors flex items-center gap-1.5" title="Edit team names or roles directly on the page">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    <span id="editModeLabel">Customize Names/Roles</span>
+                </button>
+                <span class="text-ink-faint">|</span>
+                <button onclick="openDeployModal()" class="hover:text-ink dark:hover:text-white transition-colors">
+                    GitHub Pages Guide
+                </button>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="sticky top-0 z-40 border-b border-border dark:border-border-dark bg-paper/90 dark:bg-paper-dark/90 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-lg bg-amrita text-white flex items-center justify-center font-serif font-semibold text-lg tracking-tight shadow-sm group-hover:bg-amrita-hover transition-colors">
+                    A
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-tight text-sm sm:text-base leading-none">ASRC</span>
+                    <span class="text-[11px] text-ink-muted dark:text-ink-darkMuted font-mono tracking-tight mt-0.5">Amrita Student Resource Center</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-ink-muted dark:text-ink-darkMuted">
+                <a href="#story" class="hover:text-ink dark:hover:text-white transition-colors">The Story</a>
+                <a href="#architecture" class="hover:text-ink dark:hover:text-white transition-colors">How It Works</a>
+                <a href="#team" class="hover:text-ink dark:hover:text-white transition-colors">Contributors (12)</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-ink dark:hover:text-white transition-colors flex items-center gap-1">
+                    <span>Repository</span>
+                    <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" aria-label="Toggle Dark Mode" class="p-2 rounded-lg border border-border dark:border-border-dark bg-surface dark:bg-surface-dark text-ink-muted dark:text-ink-darkMuted hover:text-ink dark:hover:text-white transition-colors">
+                    <!-- Sun Icon -->
+                    <svg id="themeIconSun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg id="themeIconMoon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+
+                <!-- Primary CTA -->
+                <a href="#archive-preview" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-ink dark:bg-white text-white dark:text-ink text-xs sm:text-sm font-medium hover:bg-amrita dark:hover:bg-amrita dark:hover:text-white transition-colors shadow-sm">
+                    <span>Browse Notes</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="bg-grid"></div>
-        <div class="hero-glow-1"></div>
-        <div class="hero-glow-2"></div>
-        <canvas id="particles-canvas"></canvas>
-
-        <div class="container hero-content">
-            <span class="retro-badge reveal">System Status: Operational</span>
-            <h1 class="hero-title reveal">Meet the Team Behind ASRC</h1>
-            <p class="hero-subtitle reveal">Built by students, for students. Together we're creating one place where every Amrita student can access notes, resources, and campus information.</p>
-            <div class="reveal">
-                <a href="#team" class="btn btn-primary ripple-btn">
-                    <span>Meet Our Team</span>
-                    <i class="fa-solid fa-arrow-down"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Statistics Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
-                    <div class="stat-number" data-target="12">0</div>
-                    <div class="stat-label">Team Members</div>
+    <section class="relative editorial-grid border-b border-border dark:border-border-dark pt-16 pb-20 sm:pt-24 sm:pb-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <!-- Eyebrow Tag -->
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amrita-light dark:bg-amrita-darkBg border border-amrita/20 text-amrita dark:text-amrita-darkText text-xs font-mono mb-6">
+                    <span>OPEN ACADEMIC ARCHIVE</span>
+                    <span>•</span>
+                    <span>BUILT BY 12 STUDENTS</span>
                 </div>
-                <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-code-branch"></i></div>
-                    <div class="stat-number" data-target="100" data-prefix="" data-suffix="+">0</div>
-                    <div class="stat-label">Open Source Commits</div>
-                </div>
-                <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <div class="stat-number" data-target="500" data-suffix="+">0</div>
-                    <div class="stat-label">Hundreds of Resources</div>
-                </div>
-                <div class="glass-card stat-card reveal">
-                    <div class="stat-icon"><i class="fa-solid fa-rocket"></i></div>
-                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
-                    <div class="stat-label">Commited Work!</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Team Section -->
-    <section class="team-section" id="team">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Contributors</span>
-                <h2 class="section-title">The Brains & Builders</h2>
-                <p class="section-subtitle">Meet the core team of developers, designers, and managers crafting ASRC.</p>
-            </div>
+                <!-- Editorial Headline -->
+                <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.12] text-ink dark:text-white mb-6">
+                    Every lecture note and faculty resource, <span class="italic font-normal text-amrita dark:text-amrita-darkText">finally in one place.</span>
+                </h1>
 
-            <!-- Dynamic Grid Container -->
-            <div class="team-grid" id="teamGrid"></div>
-        </div>
-    </section>
+                <!-- Lead Paragraph -->
+                <p class="text-lg sm:text-xl text-ink-muted dark:text-ink-darkMuted leading-relaxed font-normal mb-10">
+                    The Amrita Student Resource Center (ASRC) is a centralized, clutter-free repository of classroom notes, reference slides, and curriculum materials provided by our faculty—organized so you spend time studying, not digging through expired chat links.
+                </p>
 
-    <!-- Timeline Section -->
-    <section class="timeline-section">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Roadmap</span>
-                <h2 class="section-title">Project Timeline</h2>
-                <p class="section-subtitle">Our journey from an idea to a fully functioning student ecosystem.</p>
-            </div>
-
-            <div class="timeline-container reveal">
-                <div class="timeline-track">
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 1</div>
-                            <h3 class="timeline-title">Idea Created</h3>
-                            <p class="timeline-desc">Identified core student struggles in obtaining centralized notes.</p>
-                        </div>
+                <!-- Key Metrics Bar -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-border dark:border-border-dark">
+                    <div>
+                        <div class="font-mono text-2xl sm:text-3xl font-semibold text-ink dark:text-white">100%</div>
+                        <div class="text-xs text-ink-muted dark:text-ink-darkMuted mt-1">Faculty-sourced notes</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 2</div>
-                            <h3 class="timeline-title">Repo Initialized</h3>
-                            <p class="timeline-desc">Created the open-source GitHub organization & architecture.</p>
-                        </div>
+                    <div>
+                        <div class="font-mono text-2xl sm:text-3xl font-semibold text-ink dark:text-white">12</div>
+                        <div class="text-xs text-ink-muted dark:text-ink-darkMuted mt-1">Student maintainers</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 3</div>
-                            <h3 class="timeline-title">UI/UX Development</h3>
-                            <p class="timeline-desc">Designed retro-modern glassmorphism design system.</p>
-                        </div>
+                    <div>
+                        <div class="font-mono text-2xl sm:text-3xl font-semibold text-ink dark:text-white">Zero</div>
+                        <div class="text-xs text-ink-muted dark:text-ink-darkMuted mt-1">Ads, paywalls, or logins</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 4</div>
-                            <h3 class="timeline-title">Lecture Notes Added</h3>
-                            <p class="timeline-desc">Cataloged verified lecture notes across all engineering departments.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 5</div>
-                            <h3 class="timeline-title">Syllabus Integration</h3>
-                            <p class="timeline-desc">Added up-to-date curriculum outlines for quick reference.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">PHASE 6</div>
-                            <h3 class="timeline-title">Campus Resources</h3>
-                            <p class="timeline-desc">Integrated campus announcements, bus timings, and portals.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card timeline-card">
-                            <div class="timeline-date">FUTURE</div>
-                            <h3 class="timeline-title">Future AI Assistant</h3>
-                            <p class="timeline-desc">Integrating an AI search assistant to query academic notes instant.</p>
-                        </div>
+                    <div>
+                        <div class="font-mono text-2xl sm:text-3xl font-semibold text-amrita dark:text-amrita-darkText">24/7</div>
+                        <div class="text-xs text-ink-muted dark:text-ink-darkMuted mt-1">Direct PDF & slide access</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mission Section -->
-    <section class="mission-section">
-        <div class="container">
-            <div class="mission-grid">
-                <div class="mission-illustration reveal">
-                    <div class="illustration-box glass-card">
-                        <div class="retro-window-header">
-                            <div class="window-btn btn-red"></div>
-                            <div class="window-btn btn-yellow"></div>
-                            <div class="window-btn btn-green"></div>
-                        </div>
-                        <i class="fa-solid fa-bullseye mission-graphic-icon"></i>
-                    </div>
-                </div>
-                <div class="mission-text-content reveal">
-                    <span class="retro-badge">Our Purpose</span>
-                    <h2>Empowering Academic Excellence Through Collaboration</h2>
-                    <blockquote class="mission-quote">
-                        "Our mission is to simplify student life by creating one centralized platform where every Amrita student can easily find notes, syllabus, resources, announcements, and useful campus information."
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Core Values -->
-    <section class="values-section">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Principles</span>
-                <h2 class="section-title">Core Values</h2>
-                <p class="section-subtitle">The guiding standards behind every line of code we ship.</p>
-            </div>
-
-            <div class="values-grid">
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                    <h3 class="value-title">Innovation</h3>
-                    <p class="value-desc">Constantly modernizing learning interfaces and data discovery tools.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
-                    <h3 class="value-title">Collaboration</h3>
-                    <p class="value-desc">Peer-to-peer contribution ecosystem driven by open communication.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-universal-access"></i></div>
-                    <h3 class="value-title">Accessibility</h3>
-                    <p class="value-desc">Free and open academic materials guaranteed for every student.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-people-group"></i></div>
-                    <h3 class="value-title">Community</h3>
-                    <p class="value-desc">Fostering cross-departmental growth and student support networks.</p>
-                </div>
-                <div class="glass-card value-card reveal">
-                    <div class="value-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h3 class="value-title">Continuous Learning</h3>
-                    <p class="value-desc">Empowering creators to level up technical and collaborative skillsets.</p>
-                </div>
+    <!-- Section 01: The Origin Story (Why we built it) -->
+    <section id="story" class="py-16 sm:py-24 border-b border-border dark:border-border-dark">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 
+                <!-- Left Column: Section Index -->
+                <div class="lg:col-span-4 lg:sticky lg:top-24">
+                    <div class="font-mono text-xs uppercase tracking-widest text-amrita dark:text-amrita-darkText mb-2">
+                        01 // Why We Built This
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-ink dark:text-white leading-tight mb-4">
+                        The night before internals shouldn't be a scavenger hunt.
+                    </h2>
+                    <p class="text-sm text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                        A familiar problem across every semester, solved with a simple, well-structured index.
+                    </p>
+                </div>
+
+                <!-- Right Column: Editorial Narrative & Comparison -->
+                <div class="lg:col-span-8 space-y-8">
+                    <div class="prose prose-stone dark:prose-invert max-w-none space-y-5 text-base sm:text-lg text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                        <p class="text-ink dark:text-white font-medium">
+                            We have all been there. It is 11:30 PM the night before a mid-semester exam, and you realize you are missing the lecture slides for Unit 3.
+                        </p>
+                        <p>
+                            Our professors put immense effort into preparing detailed lecture notes, annotated PDFs, problem sets, and reference handouts. Yet, the way those files reached students was fragmented. Some lived in WhatsApp groups buried under hundreds of messages, others were inside nested Google Drive folders with restricted permissions, and a few were shared via temporary links that expired weeks ago.
+                        </p>
+                        <p>
+                            Instead of complaining about the chaos, twelve of us decided to sit down, collect every verified document shared by our faculty, standardize the file naming, and build <strong>ASRC</strong>—a permanent, fast, and searchable home for our coursework.
+                        </p>
+                    </div>
+
+                    <!-- Before vs After Comparison Card -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                        <!-- Before Box -->
+                        <div class="p-6 rounded-xl border border-border dark:border-border-dark bg-surface/50 dark:bg-surface-dark/50">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="font-mono text-xs uppercase tracking-wider text-ink-muted dark:text-ink-darkMuted">Before ASRC</span>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-stone-200 dark:bg-stone-800 text-stone-600 dark:text-stone-400">Scattered</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-ink-muted dark:text-ink-darkMuted">
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-stone-400 mt-0.5">✕</span>
+                                    <span>Scrolling through 400+ WhatsApp messages looking for <code class="text-xs font-mono bg-stone-100 dark:bg-stone-800 px-1 py-0.5 rounded">final_notes_v2.pdf</code></span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-stone-400 mt-0.5">✕</span>
+                                    <span>"You need permission to access this Google Drive folder" right before exams</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-stone-400 mt-0.5">✕</span>
+                                    <span>Inconsistent versions between different class sections</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- After Box -->
+                        <div class="p-6 rounded-xl border border-amrita/30 bg-surface dark:bg-surface-dark shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="font-mono text-xs uppercase tracking-wider text-amrita dark:text-amrita-darkText font-semibold">With ASRC</span>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-amrita-light dark:bg-amrita-darkBg text-amrita dark:text-amrita-darkText">Centralized</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-ink dark:text-ink-dark">
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-amrita dark:text-amrita-darkText font-bold mt-0.5">✓</span>
+                                    <span>Cleanly indexed by Semester, Course Code, and Module number</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-amrita dark:text-amrita-darkText font-bold mt-0.5">✓</span>
+                                    <span>Direct, one-click viewing and downloading—no login walls</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-amrita dark:text-amrita-darkText font-bold mt-0.5">✓</span>
+                                    <span>Verified faculty materials maintained and updated by a 12-member team</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-   
+    <!-- Section 02: Core Architecture / How It Works -->
+    <section id="architecture" class="py-16 sm:py-24 border-b border-border dark:border-border-dark bg-surface/40 dark:bg-surface-dark/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-amrita dark:text-amrita-darkText mb-2">
+                        02 // Repository Standards
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-ink dark:text-white">
+                        Designed for clarity and speed.
+                    </h2>
+                </div>
+                <p class="text-sm text-ink-muted dark:text-ink-darkMuted max-w-md mt-4 md:mt-0">
+                    We treated organizing lecture notes like an engineering problem: clean taxonomy, predictable naming, and zero bloat.
+                </p>
+            </div>
 
-    <!-- Continuous Contributors Marquee -->
-    <section class="marquee-section">
-        <div class="marquee-title">Active Platform Builders</div>
-        <div class="marquee-container">
-            <div class="marquee-content" id="marqueeContent1"></div>
-            <div class="marquee-content" id="marqueeContent2" aria-hidden="true"></div>
+            <!-- 4 Pillars Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pillar 1 -->
+                <div class="p-6 rounded-xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-paper dark:bg-paper-dark border border-border dark:border-border-dark flex items-center justify-center text-amrita dark:text-amrita-darkText font-mono text-sm mb-5">
+                            01
+                        </div>
+                        <h3 class="font-semibold text-base text-ink dark:text-white mb-2">Faculty-Verified Material</h3>
+                        <p class="text-sm text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                            Every slide deck, PDF handout, and question bank in the archive comes directly from official classroom distributions.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-border/60 dark:border-border-dark font-mono text-[11px] text-ink-faint">
+                        SOURCE: OFFICIAL LECTURES
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="p-6 rounded-xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-paper dark:bg-paper-dark border border-border dark:border-border-dark flex items-center justify-center text-amrita dark:text-amrita-darkText font-mono text-sm mb-5">
+                            02
+                        </div>
+                        <h3 class="font-semibold text-base text-ink dark:text-white mb-2">Structured Taxonomy</h3>
+                        <p class="text-sm text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                            No more mysterious filenames. Resources are strictly categorized by Subject Code, Unit/Module, and Topic.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-border/60 dark:border-border-dark font-mono text-[11px] text-ink-faint">
+                        FORMAT: /SEM/COURSE/UNIT
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="p-6 rounded-xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-paper dark:bg-paper-dark border border-border dark:border-border-dark flex items-center justify-center text-amrita dark:text-amrita-darkText font-mono text-sm mb-5">
+                            03
+                        </div>
+                        <h3 class="font-semibold text-base text-ink dark:text-white mb-2">Lightweight & Mobile Ready</h3>
+                        <p class="text-sm text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                            Built to load instantaneously on campus Wi-Fi or mobile data so you can pull up a formula sheet walking into class.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-border/60 dark:border-border-dark font-mono text-[11px] text-ink-faint">
+                        LATENCY: STATIC FAST
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="p-6 rounded-xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-paper dark:bg-paper-dark border border-border dark:border-border-dark flex items-center justify-center text-amrita dark:text-amrita-darkText font-mono text-sm mb-5">
+                            04
+                        </div>
+                        <h3 class="font-semibold text-base text-ink dark:text-white mb-2">Peer-Maintained</h3>
+                        <p class="text-sm text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                            Continuously audited by our 12-person student team. Whenever faculty upload new revisions, the index stays in sync.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-border/60 dark:border-border-dark font-mono text-[11px] text-ink-faint">
+                        GOVERNANCE: 12 MEMBERS
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Directory Structure Preview -->
+            <div id="archive-preview" class="mt-10 rounded-xl border border-border dark:border-border-dark bg-surface dark:bg-surface-dark overflow-hidden shadow-sm">
+                <div class="px-4 py-3 border-b border-border dark:border-border-dark bg-paper/60 dark:bg-paper-dark/60 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700"></span>
+                        <span class="ml-2 font-mono text-xs text-ink-muted dark:text-ink-darkMuted">asrc-archive / directory-structure</span>
+                    </div>
+                    <span class="font-mono text-[11px] text-amrita dark:text-amrita-darkText">STANDARDIZED INDEX</span>
+                </div>
+                <div class="p-5 sm:p-6 font-mono text-xs sm:text-sm text-ink-muted dark:text-ink-darkMuted overflow-x-auto">
+                    <div class="space-y-1.5 min-w-[500px]">
+                        <div class="text-ink dark:text-white font-medium">📁 Amrita-Student-Resource-Center/</div>
+                        <div class="pl-6 flex items-center justify-between hover:bg-paper dark:hover:bg-paper-dark px-2 py-1 rounded transition-colors">
+                            <span>├── 📂 <strong class="text-ink dark:text-white">Core-Subjects/</strong> <span class="text-ink-faint">(Unit 1, Unit 2, Unit 3 Lecture Slides & Handouts)</span></span>
+                            <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400">Verified</span>
+                        </div>
+                        <div class="pl-6 flex items-center justify-between hover:bg-paper dark:hover:bg-paper-dark px-2 py-1 rounded transition-colors">
+                            <span>├── 📂 <strong class="text-ink dark:text-white">Lab-Manuals & Records/</strong> <span class="text-ink-faint">(Faculty Guidelines, Reference Code & Rubrics)</span></span>
+                            <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400">Verified</span>
+                        </div>
+                        <div class="pl-6 flex items-center justify-between hover:bg-paper dark:hover:bg-paper-dark px-2 py-1 rounded transition-colors">
+                            <span>├── 📂 <strong class="text-ink dark:text-white">Previous-Question-Papers/</strong> <span class="text-ink-faint">(Mid-Term, Periodicals & End-Semester Archives)</span></span>
+                            <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400">Verified</span>
+                        </div>
+                        <div class="pl-6 flex items-center justify-between hover:bg-paper dark:hover:bg-paper-dark px-2 py-1 rounded transition-colors">
+                            <span>└── 📄 <strong class="text-ink dark:text-white">Curriculum-Syllabus-Index.pdf</strong> <span class="text-ink-faint">(Complete Course Outcomes & Textbook References)</span></span>
+                            <span class="text-[11px] text-ink-faint">Updated 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Fun Facts Section -->
-    <section class="facts-section">
-        <div class="container">
-            <div class="section-title-wrap reveal">
-                <span class="retro-badge">Trivia</span>
-                <h2 class="section-title">Fun Facts</h2>
+    <!-- Section 03: The 12-Member Team -->
+    <section id="team" class="py-16 sm:py-24 border-b border-border dark:border-border-dark">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header & Edit Mode Helper -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-amrita dark:text-amrita-darkText mb-2">
+                        03 // The Collective
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-ink dark:text-white">
+                        Built & maintained by 12 students.
+                    </h2>
+                    <p class="text-base text-ink-muted dark:text-ink-darkMuted mt-2 max-w-2xl">
+                        From collecting notes across departments and verifying PDFs to designing the frontend and managing the repository—ASRC is a collaborative effort by our group.
+                    </p>
+                </div>
+
+                <!-- Quick Filter / Edit Prompt -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="toggleEditMode()" id="teamSectionEditBtn" class="px-3.5 py-2 rounded-lg border border-border dark:border-border-dark bg-surface dark:bg-surface-dark text-xs font-medium text-ink-muted dark:text-ink-darkMuted hover:text-ink dark:hover:text-white hover:border-amrita transition-colors flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 text-amrita" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        <span id="teamEditBtnText">Click to Edit Names / Roles</span>
+                    </button>
+                </div>
             </div>
 
-            <div class="facts-grid">
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">☕</div>
-                    <div class="fact-title">Countless Cups of Coffee</div>
+            <!-- Notice Banner when Edit Mode is Active -->
+            <div id="editNoticeBanner" class="hidden mb-8 p-4 rounded-xl bg-amrita-light dark:bg-amrita-darkBg border border-amrita/30 text-amrita dark:text-amrita-darkText text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>Live Edit Mode Enabled:</strong> Click on any member's name or role below (including Member #12!) to customize it. Then click "Export Updated HTML" to save your changes permanently for GitHub Pages.</span>
                 </div>
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">💻</div>
-                    <div class="fact-title">Hundreds of Commits</div>
+                <button onclick="copyUpdatedHTML()" class="shrink-0 px-3 py-1.5 rounded-lg bg-amrita text-white font-medium text-xs hover:bg-amrita-hover transition-colors">
+                    Copy Updated HTML
+                </button>
+            </div>
+
+            <!-- 
+                ======================================================================
+                TEAM ROSTER (12 MEMBERS)
+                Note for Developer: You listed 11 names in your prompt (Diya, Nandana, 
+                Govind, Srirag, Srihari, Harihar, Shreya, Adhikaran, Aditya, Afrin, Athar).
+                Card #12 is set up so you can either click "Set 12th Name" right on the 
+                webpage OR replace the name directly in the JavaScript array below!
+                ======================================================================
+            -->
+            <div id="teamGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <!-- Populated dynamically via JS below so initials & live-editing work seamlessly -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 04: Contribute / Open Source Callout -->
+    <section class="py-16 sm:py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-2xl border border-border dark:border-border-dark bg-surface dark:bg-surface-dark p-8 sm:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+                <div class="max-w-2xl">
+                    <div class="font-mono text-xs uppercase tracking-widest text-amrita dark:text-amrita-darkText mb-2">
+                        04 // Open Academic Contribution
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl text-ink dark:text-white mb-3">
+                        Have updated faculty notes or spotted a missing module?
+                    </h2>
+                    <p class="text-sm sm:text-base text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                        ASRC grows stronger when classmates contribute. If a professor shares a new reference sheet, annotated PDF, or syllabus revision, open a pull request or send the file to any of the 12 team members above.
+                    </p>
                 </div>
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">🎯</div>
-                    <div class="fact-title">One Common Goal</div>
-                </div>
-                <div class="glass-card fact-card reveal">
-                    <div class="fact-emoji">📖</div>
-                    <div class="fact-title">100% Student Driven</div>
+                <div class="flex flex-wrap items-center gap-3 shrink-0">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-lg bg-amrita text-white text-sm font-medium hover:bg-amrita-hover transition-colors flex items-center gap-2 shadow-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>
+                        <span>View on GitHub</span>
+                    </a>
+                    <button onclick="openDeployModal()" class="px-5 py-2.5 rounded-lg border border-border dark:border-border-dark bg-paper dark:bg-paper-dark text-ink dark:text-white text-sm font-medium hover:border-ink-faint transition-colors">
+                        Deploy / Export HTML
+                    </button>
                 </div>
             </div>
         </div>
     </section>
-
-
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <a href="#" class="logo footer-logo">
-                        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <span>ASRC</span>
-                    </a>
-                    <p class="footer-desc">Centralized resource platform providing seamless academic materials access for all Amrita students.</p>
+    <footer class="border-t border-border dark:border-border-dark bg-surface/60 dark:bg-surface-dark/60 py-12 text-xs text-ink-muted dark:text-ink-darkMuted">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded bg-amrita text-white flex items-center justify-center font-serif font-semibold text-xs">
+                    A
                 </div>
                 <div>
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Home</a>
-                        <a href="#" class="footer-link">Lecture Notes</a>
-                        <a href="#" class="footer-link">Syllabus</a>
-                        <a href="#" class="footer-link">Campus Resources</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Community</h4>
-                    <div class="footer-links">
-                        <a href="https://github.com" target="_blank" class="footer-link">GitHub Repo</a>
-                        <a href="#" class="footer-link">Contributor Guide</a>
-                        <a href="#" class="footer-link">Issue Tracker</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Contact</h4>
-                    <div class="footer-links">
-                        <a href="mailto:asrc@amrita.edu" class="footer-link">asrc@amrita.edu</a>
-                        <a href="#" class="footer-link">Amrita Vishwa Vidyapeetham</a>
-                    </div>
+                    <span class="font-semibold text-ink dark:text-white">ASRC — Amrita Student Resource Center</span>
+                    <p class="text-[11px] text-ink-faint mt-0.5">An independent, student-run academic archive built for educational accessibility.</p>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <div>© 2026 Amrita Student Resource Center. Open Source Software.</div>
-                <div>Made with <i class="fa-solid fa-heart heart"></i> by Amrita Students</div>
+            <div class="flex flex-wrap items-center gap-6 font-mono text-[11px]">
+                <a href="#story" class="hover:text-ink dark:hover:text-white transition-colors">MISSION</a>
+                <a href="#architecture" class="hover:text-ink dark:hover:text-white transition-colors">STRUCTURE</a>
+                <a href="#team" class="hover:text-ink dark:hover:text-white transition-colors">12 CONTRIBUTORS</a>
+                <button onclick="copyUpdatedHTML()" class="text-amrita dark:text-amrita-darkText hover:underline">COPY SOURCE HTML</button>
             </div>
         </div>
     </footer>
 
-    
-    <div class="modal-overlay" id="teamModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-header">
-                <img src="" alt="" class="modal-img" id="modalImg">
-                <div class="modal-title-wrap">
-                    <h3 id="modalName">Member Name</h3>
-                    <p id="modalRole">Member Role</p>
+    <!-- Modal: GitHub Pages Setup & Export HTML -->
+    <div id="deployModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
+        <div class="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-xl">
+            <div class="flex items-center justify-between pb-4 border-b border-border dark:border-border-dark">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amrita"></span>
+                    <h3 class="font-serif text-xl text-ink dark:text-white font-medium">Host on GitHub Pages</h3>
                 </div>
+                <button onclick="closeDeployModal()" class="text-ink-muted hover:text-ink dark:hover:text-white p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
-            <div class="modal-section">
-                <h4>About</h4>
-                <p id="modalBio">Member bio content goes here.</p>
+            <div class="py-5 space-y-4 text-sm text-ink-muted dark:text-ink-darkMuted leading-relaxed">
+                <p>This entire page is self-contained inside a single <code class="font-mono text-xs bg-paper dark:bg-paper-dark px-1.5 py-0.5 rounded border border-border dark:border-border-dark">index.html</code> file with zero external build steps required.</p>
+                <ol class="list-decimal list-inside space-y-2 text-ink dark:text-ink-dark">
+                    <li>Customize any team roles or the 12th member's name directly on the page.</li>
+                    <li>Click <strong>Copy Clean HTML for GitHub</strong> below to copy the updated source code.</li>
+                    <li>In your GitHub repository, create or replace <code class="font-mono text-xs">index.html</code> (or <code class="font-mono text-xs">about.html</code>) and paste the code.</li>
+                    <li>Go to <strong>Settings → Pages</strong> and deploy from your <code class="font-mono text-xs">main</code> branch.</li>
+                </ol>
             </div>
-            <div class="modal-section">
-                <h4>Key Contributions</h4>
-                <p id="modalContribution">Member contributions detail.</p>
+            <div class="pt-4 border-t border-border dark:border-border-dark flex items-center justify-end gap-3">
+                <button onclick="closeDeployModal()" class="px-4 py-2 rounded-lg border border-border dark:border-border-dark text-xs font-medium text-ink-muted hover:text-ink dark:hover:text-white">
+                    Close
+                </button>
+                <button onclick="copyUpdatedHTML()" class="px-4 py-2 rounded-lg bg-amrita text-white text-xs font-medium hover:bg-amrita-hover transition-colors flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>Copy Clean HTML for GitHub</span>
+                </button>
             </div>
-            <div class="modal-section">
-                <h4>Skills & Tools</h4>
-                <div class="skills-tags" id="modalSkills"></div>
-            </div>
-            <div class="social-links" style="margin-top: 1.5rem;" id="modalSocials"></div>
         </div>
     </div>
 
-   
+    <!-- Subtle Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-xl bg-ink dark:bg-white text-white dark:text-ink text-xs font-medium shadow-lg border border-border/20">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 dark:bg-emerald-600"></span>
+        <span id="toastMessage">Copied to clipboard!</span>
+    </div>
+
+    <!-- Application Script -->
     <script>
+        /*
+         * ====================================================================
+         * ASRC TEAM MEMBERS DATA (12 MEMBERS)
+         * You can edit the names, roles, or focus areas directly here, or
+         * interactively on the page using the "Customize Names/Roles" button!
+         * ====================================================================
+         */
         const teamMembers = [
             {
-                id: 1,
+                id: "01",
                 name: "Diya",
-                role: "Project Lead",
-                image: "#",
-                bio: "Visionary student leader steering overall platform strategy, architecture, and deployment schedules.",
-                contribution: "Architected core repository structures and directed inter-departmental workflows.",
-                
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:aarav@amrita.edu"
+                role: "Resource Curation & Structuring",
+                focus: "Lecture Notes & Syllabus Indexing"
             },
             {
-                id: 2,
-
-                name: "Govind Krishnan",
-                role: "Frontend Developer",
-                image: "#",
-                bio: "Crafts responsive, sleek components and smooth glassmorphism interfaces.",
-                contribution: "Built UI component structures, responsive layouts, and interactive animations.",
-                
-                github: "https://github.com/Govi4204",
-                linkedin: "https://www.linkedin.com/in/govind-krishnan-8982092aa/",
-                email: "mailto:govikrishnan4204@gmail.com"
-
-
-            },
-            {
-                id: 3,
-                name: "Adyakiran",
-                role: "Frontend Developer",
-                image: "image: "",",
-                bio: "",
-                contribution: "Implemented responsive web breakpoints, accessibility standards, and scroll effects.",
-               
-                github: "https://github.com/adyakiran08",
-                linkedin: "https://linkedin.com",
-                email: "mailto:aditya@amrita.edu"
-            },
-            {
-                id: 4,
-                name: "Sreerag KP",
-                role: "All in all contibution",
-                image: "#",
-                bio: "",
-                contribution: "Developed resource indexing pipelines and optimized payload delivery.",
-               
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:rohan@amrita.edu"
-            },
-            {
-                id: 5,
-                name: "Sreehari",
-                role: "Backend Developer",
-                image: "#",
-                bio: "Focuses on static resource compilation and automated cloud synchronization pipelines.",
-                contribution: "Integrated automated verification flows for uploaded lecture content.",
-                
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:kavya@amrita.edu"
-            },
-            {
-                id: 6,
+                id: "02",
                 name: "Nandana",
-                role: "UI/UX Designer",
-                image: "#",
-                bio: "Designs aesthetic user journeys, retro-futuristic themes, and fluid glass components.",
-                contribution: "Created the glassmorphic design system and high-fidelity prototype layouts.",
-                skills: ["Figma", "UI/UX", "Color Theory", "Prototyping"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:ananya@amrita.edu"
+                role: "Academic Archive & Quality Review",
+                focus: "Faculty Handouts & Verification"
             },
             {
-                id: 7,
-                name: "Adithya",
-                role: "Content Manager",
-                image: "#",
-                bio: "Curates, categorizes, and verifies course materials across all engineering branches.",
-                contribution: "Organized over 500+ lecture notes and previous year question repositories.",
-                skills: ["Content Management", "Curriculum Mapping", "Editing"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:siddharth@amrita.edu"
+                id: "03",
+                name: "Govind",
+                role: "Platform Architecture & Repository",
+                focus: "Core Index & Directory Structure"
             },
             {
-                id: 8,
-                name: "Afreen",
-                role: "Documentation Lead",
-                image: "#",
-                bio: "Maintains comprehensive technical docs, contributor guidelines, and release logs.",
-                contribution: "Drafted open-source contribution guidelines and comprehensive README docs.",
-                skills: ["Technical Writing", "Markdown", "GitDocs", "Open Source Strategy"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:meera@amrita.edu"
+                id: "04",
+                name: "Srirag",
+                role: "Frontend & Search Experience",
+                focus: "UI Implementation & Navigation"
             },
             {
-                id: 9,
-                name: "Sree Nanda",
-                role: "Testing Lead",
-                image: "#",
-                bio: "Ensures cross-browser compatibility, link integrity, and optimal mobile experience.",
-                contribution: "Executed cross-device responsiveness audits and link verification routines.",
-                skills: ["QA Testing", "Cross-Browser Audit", "Performance Tuning"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:varun@amrita.edu"
+                id: "05",
+                name: "Srihari",
+                role: "Course Material Standardization",
+                focus: "Module Taxonomy & File Formatting"
             },
             {
-                id: 10,
-                name: "Sreya",
-                role: "GitHub Manager",
-                image: "#",
-                bio: "Oversees code review approvals, pull request merges, and issue branch workflows.",
-                contribution: "Managed GitHub organization permissions and repository deployment flows.",
-                skills: ["GitHub Actions", "Git Strategy", "Code Review", "DevOps"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:sneha@amrita.edu"
+                id: "06",
+                name: "Harihar",
+                role: "Systems & Deployment Workflow",
+                focus: "GitHub Pages & Archive Uptime"
             },
             {
-                id: 11,
-                name: "Hari Har",
-                role: "Resource Manager",
-                image: "#",
-                bio: "Coordinates with student class representatives to acquire syllabus updates.",
-                contribution: "Established campus channels for fast file aggregation.",
-                skills: ["Data Collection", "Resource Audit", "Communication"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:rahul@amrita.edu"
+                id: "07",
+                name: "Shreya",
+                role: "Content Organization & Documentation",
+                focus: "Subject Guides & Reference Links"
             },
             {
-                id: 12,
-                name: "Arshdh",
-                role: "Community Coordinator",
-                image: "#",
-                bio: "Engages with student communities, gathers feedback, and runs contributor workshops.",
-                contribution: "Organized open-source hack nights and student onboarding drives.",
-                skills: ["Community Management", "Event Planning", "Public Relations"],
-                github: "https://github.com",
-                linkedin: "https://linkedin.com",
-                email: "mailto:pooja@amrita.edu"
+                id: "08",
+                name: "Adhikaran",
+                role: "Resource Collection & Auditing",
+                focus: "Lab Manuals & Question Banks"
+            },
+            {
+                id: "09",
+                name: "Aditya",
+                role: "Web Interface & Performance",
+                focus: "Responsive Layout & Fast Access"
+            },
+            {
+                id: "10",
+                name: "Afrin",
+                role: "Curriculum Mapping & Curation",
+                focus: "Unit-wise Notes & Slides Sync"
+            },
+            {
+                id: "11",
+                name: "Athar",
+                role: "Repository Maintenance & QA",
+                focus: "Link Integrity & Version Control"
+            },
+            {
+                id: "12",
+                name: "Member 12 (Click to Edit)", // <-- Replace with your 12th member's name!
+                role: "Core Contributor & Curation",
+                focus: "Academic Resource Management",
+                isPlaceholder: true
             }
         ];
 
-        /* ==========================================================================
-           2. DYNAMIC DOM RENDERING & MODAL LOGIC
-           ========================================================================== */
-        document.addEventListener('DOMContentLoaded', () => {
-            renderTeamCards();
-            renderMarquee();
-            initScrollAnimations();
-            initCounterAnimations();
-            initParticleBackground();
-            initInteractions();
-            
-            // Remove Loader
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-            }, 500);
-        });
+        let isEditMode = false;
 
-        // Render Team Members into Grid
-        function renderTeamCards() {
-            const teamGrid = document.getElementById('teamGrid');
-            teamGrid.innerHTML = teamMembers.map(member => `
-                <div class="glass-card team-card reveal" onclick="openModal(${member.id})">
-                    <div class="member-img-wrap">
-                        <img src="${member.image}" alt="${member.name}" class="member-img" loading="lazy">
+        // Generate Monogram Initials from Name
+        function getInitials(name) {
+            const clean = name.replace(/\(.*\)/, '').trim();
+            if (!clean || clean.toLowerCase().startsWith('member 12')) return '12';
+            const parts = clean.split(/\s+/);
+            if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+            return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+        }
+
+        // Render the 12 Team Cards
+        function renderTeamGrid() {
+            const grid = document.getElementById('teamGrid');
+            grid.innerHTML = teamMembers.map((member, index) => {
+                const initials = getInitials(member.name);
+                const highlightClass = member.isPlaceholder 
+                    ? 'border-dashed border-amrita/50 dark:border-amrita-darkText/40 bg-amrita-light/30 dark:bg-amrita-darkBg/20' 
+                    : 'border-border dark:border-border-dark bg-surface dark:bg-surface-dark';
+
+                return `
+                <div class="group relative rounded-xl border ${highlightClass} p-5 transition-all duration-150 hover:border-amrita/60 dark:hover:border-amrita-darkText/60 hover:shadow-xs flex flex-col justify-between">
+                    <div>
+                        <!-- Top Row: Monogram + Index Number -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div id="avatar-${index}" class="w-10 h-10 rounded-lg bg-paper dark:bg-paper-dark border border-border dark:border-border-dark flex items-center justify-center font-serif font-semibold text-sm text-amrita dark:text-amrita-darkText group-hover:bg-amrita group-hover:text-white group-hover:border-amrita transition-colors">
+                                ${initials}
+                            </div>
+                            <span class="font-mono text-[11px] text-ink-faint">ASRC // ${member.id}</span>
+                        </div>
+
+                        <!-- Member Name -->
+                        <h3 
+                            contenteditable="${isEditMode}" 
+                            oninput="handleMemberEdit(${index}, 'name', this.innerText)"
+                            class="font-semibold text-base text-ink dark:text-white tracking-tight mb-1"
+                        >${member.name}</h3>
+
+                        <!-- Member Role -->
+                        <p 
+                            contenteditable="${isEditMode}" 
+                            oninput="handleMemberEdit(${index}, 'role', this.innerText)"
+                            class="text-xs font-medium text-amrita dark:text-amrita-darkText mb-2"
+                        >${member.role}</p>
+
+                        <!-- Member Focus -->
+                        <p 
+                            contenteditable="${isEditMode}" 
+                            oninput="handleMemberEdit(${index}, 'focus', this.innerText)"
+                            class="text-xs text-ink-muted dark:text-ink-darkMuted leading-relaxed"
+                        >${member.focus}</p>
                     </div>
-                    <h3 class="member-name">${member.name}</h3>
-                    <div class="member-role">${member.role}</div>
-                    <p class="member-bio">${member.bio}</p>
-                    <div class="social-links" onclick="event.stopPropagation()">
-                        <a href="${member.github}" target="_blank" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="${member.linkedin}" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="${member.email}" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+
+                    <!-- Card Footer -->
+                    <div class="mt-5 pt-3 border-t border-border/60 dark:border-border-dark flex items-center justify-between text-[11px] font-mono text-ink-faint">
+                        <span>CONTRIBUTOR</span>
+                        ${member.isPlaceholder ? `
+                            <button onclick="enableAndFocus12th(${index})" class="text-amrita dark:text-amrita-darkText underline hover:no-underline font-sans font-medium">
+                                Set 12th Name →
+                            </button>
+                        ` : `
+                            <span class="text-ink-muted dark:text-ink-darkMuted">ACTIVE</span>
+                        `}
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
-        // Render Contributors Continuous Marquee
-        function renderMarquee() {
-            const marquee1 = document.getElementById('marqueeContent1');
-            const marquee2 = document.getElementById('marqueeContent2');
-            
-            const html = teamMembers.map(m => `
-                <div class="marquee-item">
-                    <img src="${m.image}" alt="${m.name}">
-                    <span>${m.name}</span>
-                </div>
-            `).join('');
-
-            marquee1.innerHTML = html;
-            marquee2.innerHTML = html;
-        }
-
-        // Modal Functionality
-        const modal = document.getElementById('teamModal');
-        const modalClose = document.getElementById('modalClose');
-
-        function openModal(id) {
-            const member = teamMembers.find(m => m.id === id);
-            if (!member) return;
-
-            document.getElementById('modalImg').src = member.image;
-            document.getElementById('modalName').textContent = member.name;
-            document.getElementById('modalRole').textContent = member.role;
-            document.getElementById('modalBio').textContent = member.bio;
-            document.getElementById('modalContribution').textContent = member.contribution;
-            
-            const skillsWrap = document.getElementById('modalSkills');
-            skillsWrap.innerHTML = member.skills.map(s => `<span class="skill-tag">${s}</span>`).join('');
-
-            const socialsWrap = document.getElementById('modalSocials');
-            socialsWrap.innerHTML = `
-                <a href="${member.github}" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                <a href="${member.linkedin}" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="${member.email}" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
-            `;
-
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        /* ==========================================================================
-           3. INTERACTION CONTROLLERS & EFFECTS
-           ========================================================================== */
-        function initInteractions() {
-            // Navbar Scroll Effect
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 30) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+        // Update state & monogram live when user edits text
+        function handleMemberEdit(index, field, value) {
+            teamMembers[index][field] = value.trim();
+            if (field === 'name') {
+                teamMembers[index].isPlaceholder = false;
+                const avatarEl = document.getElementById(`avatar-${index}`);
+                if (avatarEl) {
+                    avatarEl.innerText = getInitials(value);
                 }
-            });
-
-            // Mobile Navigation Toggle
-            const mobileToggle = document.getElementById('mobileToggle');
-            const navMenu = document.getElementById('navMenu');
-            mobileToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-
-            // Search Modal Toggle
-            const searchBtn = document.getElementById('searchBtn');
-            const searchOverlay = document.getElementById('searchOverlay');
-            const closeSearch = document.getElementById('closeSearch');
-
-            searchBtn.addEventListener('click', () => searchOverlay.classList.add('active'));
-            closeSearch.addEventListener('click', () => searchOverlay.classList.remove('active'));
-
-            // Custom Glow Cursor Movement
-            const cursorGlow = document.getElementById('cursor-glow');
-            window.addEventListener('mousemove', (e) => {
-                cursorGlow.style.left = e.clientX + 'px';
-                cursorGlow.style.top = e.clientY + 'px';
-            });
-
-            // Ripple Effect on Buttons
-            document.querySelectorAll('.btn').forEach(button => {
-                button.addEventListener('click', function (e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    ripple.style.left = `${x}px`;
-                    ripple.style.top = `${y}px`;
-
-                    this.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 600);
-                });
-            });
-        }
-
-        /* ==========================================================================
-           4. SCROLL & ANIMATION CONTROLLERS
-           ========================================================================== */
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        }
-
-        // Counter Up Animation
-        function initCounterAnimations() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            let animated = false;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !animated) {
-                        statNumbers.forEach(stat => {
-                            const target = parseInt(stat.getAttribute('data-target'));
-                            const prefix = stat.getAttribute('data-prefix') || '';
-                            const suffix = stat.getAttribute('data-suffix') || '';
-                            let current = 0;
-                            const increment = Math.ceil(target / 40);
-
-                            const updateCounter = () => {
-                                current += increment;
-                                if (current >= target) {
-                                    stat.innerText = prefix + target + suffix;
-                                } else {
-                                    stat.innerText = prefix + current + suffix;
-                                    setTimeout(updateCounter, 30);
-                                }
-                            };
-                            updateCounter();
-                        });
-                        animated = true;
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            if (statNumbers.length > 0) {
-                observer.observe(statNumbers[0].parentElement.parentElement);
             }
         }
 
-        /* ==========================================================================
-           5. CANVAS FLOATING PARTICLES
-           ========================================================================== */
-        function initParticleBackground() {
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-
-            function resizeCanvas() {
-                canvas.width = canvas.parentElement.clientWidth;
-                canvas.height = canvas.parentElement.clientHeight;
+        // Quick helper for the 12th member card button
+        function enableAndFocus12th(index) {
+            if (!isEditMode) {
+                toggleEditMode();
             }
-
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            const particles = [];
-            const particleCount = 45;
-
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 2 + 1,
-                    color: i % 2 === 0 ? 'rgba(37, 99, 235, 0.3)' : 'rgba(236, 72, 153, 0.3)',
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5
-                });
-            }
-
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                particles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.fill();
-                });
-
-                requestAnimationFrame(animateParticles);
-            }
-
-            animateParticles();
+            setTimeout(() => {
+                const cards = document.querySelectorAll('#teamGrid h3');
+                if (cards[index]) {
+                    cards[index].focus();
+                    // Select text inside so user can immediately type over it
+                    const range = document.createRange();
+                    range.selectNodeContents(cards[index]);
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+            }, 60);
         }
+
+        // Toggle Live Edit Mode for Names & Roles
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const body = document.body;
+            const banner = document.getElementById('editNoticeBanner');
+            const topLabel = document.getElementById('editModeLabel');
+            const sectionBtnText = document.getElementById('teamEditBtnText');
+
+            if (isEditMode) {
+                body.classList.add('editable-active');
+                banner.classList.remove('hidden');
+                banner.classList.add('flex');
+                topLabel.innerText = 'Done Editing';
+                sectionBtnText.innerText = 'Finish Editing Names';
+            } else {
+                body.classList.remove('editable-active');
+                banner.classList.add('hidden');
+                banner.classList.remove('flex');
+                topLabel.innerText = 'Customize Names/Roles';
+                sectionBtnText.innerText = 'Click to Edit Names / Roles';
+            }
+            renderTeamGrid();
+        }
+
+        // Dark / Light Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+        }
+
+        // Modal Controls
+        function openDeployModal() {
+            const modal = document.getElementById('deployModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDeployModal() {
+            const modal = document.getElementById('deployModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Show Toast Notification
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3200);
+        }
+
+        // Copy Clean HTML (with any edited names baked in) for GitHub Pages
+        function copyUpdatedHTML() {
+            if (isEditMode) {
+                toggleEditMode(); // Turn off edit outlines before exporting
+            }
+            closeDeployModal();
+
+            // Serialize current HTML and bake in updated teamMembers array
+            let fullHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const updatedArrayString = "const teamMembers = " + JSON.stringify(teamMembers, null, 12) + ";";
+            fullHTML = fullHTML.replace(/const teamMembers = \[[\s\S]*?\];/, updatedArrayString);
+
+            const textarea = document.createElement('textarea');
+            textarea.value = fullHTML;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Clean HTML copied! Ready to paste into your GitHub repo.');
+            } catch (err) {
+                showToast('Could not copy automatically. You can save the file directly.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderTeamGrid();
+        };
     </script>
 </body>
 </html>

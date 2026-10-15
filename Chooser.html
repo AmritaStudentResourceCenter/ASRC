@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semester 1 question draw</title>
+<meta name="description" content="Draw a random Semester 1 subject, pick a topic, and copy a ready-made prompt for your AI chatbot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#e8edf1; --grid:#d2dbe3; --ink:#1b2a41; --soft:#51607a;
+  --mark:#f2d544; --white:#fbfcfd; --line:#1b2a41;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#141c2b; --grid:#1e2940; --ink:#e6ebf2; --soft:#9aa8c0; --white:#1a2438; --line:#e6ebf2;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink); background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+  font:400 17px/1.55 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+main{max-width:46rem; margin:0 auto; padding:3rem 1.25rem 5rem}
+h1{font-size:clamp(2rem,6vw,3.1rem); line-height:1.05; font-weight:800; margin:0 0 .6rem; letter-spacing:-.02em}
+.lede{max-width:34rem; color:var(--soft); margin:0 0 2.5rem}
+h2{font-size:1.2rem; font-weight:600; margin:0 0 .9rem; display:flex; gap:.6rem; align-items:baseline}
+h2 span{display:inline-grid; place-items:center; width:1.6rem; height:1.6rem; border:2px solid var(--line); border-radius:50%; font-size:.85rem; flex:none}
+section{margin-bottom:2.75rem}
+button,input,select,textarea{font:inherit; color:inherit}
+.btn{
+  background:var(--ink); color:var(--paper); border:2px solid var(--line); border-radius:4px;
+  padding:.65rem 1.1rem; font-weight:600; cursor:pointer; box-shadow:3px 3px 0 var(--mark);
+  transition:transform .08s, box-shadow .08s;
+}
+.btn:hover{transform:translate(1px,1px); box-shadow:2px 2px 0 var(--mark)}
+.btn:active{transform:translate(3px,3px); box-shadow:0 0 0 var(--mark)}
+.btn.ghost{background:transparent; color:var(--ink); box-shadow:none}
+:focus-visible{outline:3px solid var(--mark); outline-offset:2px}
+
+/* subject slot */
+.slot{
+  background:var(--white); border:2px solid var(--line); border-radius:6px; padding:1.4rem 1.4rem 1.2rem;
+  margin-bottom:1rem; min-height:8.5rem;
+}
+.slot .code{font:500 .85rem ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--soft); min-height:1.3rem}
+.slot .name{font-size:clamp(1.7rem,5.5vw,2.6rem); font-weight:800; line-height:1.1; letter-spacing:-.015em; margin:.2rem 0 0}
+.slot .name.empty{color:var(--soft)}
+.slot.spinning .name{opacity:.55}
+.row{display:flex; flex-wrap:wrap; gap:.7rem; align-items:center}
+
+/* topics */
+.unit{margin:0 0 1.3rem}
+.unit h3{font-size:.95rem; font-weight:600; color:var(--soft); margin:0 0 .5rem}
+.chips{display:flex; flex-wrap:wrap; gap:.5rem}
+.chip{
+  background:var(--white); border:1.5px solid var(--line); border-radius:4px; padding:.35rem .7rem;
+  cursor:pointer; font-size:.95rem; text-align:left;
+}
+.chip:hover{border-style:dashed}
+.chip[aria-pressed="true"]{background:var(--mark); color:#1b2a41; font-weight:600}
+.custom{margin-top:.4rem}
+.custom label{display:block; font-size:.95rem; color:var(--soft); margin-bottom:.35rem}
+input[type=text]{
+  width:100%; max-width:26rem; padding:.55rem .7rem; background:var(--white);
+  border:1.5px solid var(--line); border-radius:4px;
+}
+
+/* options */
+.opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(11rem,1fr)); gap:1rem; margin-bottom:1.2rem}
+.opts label{display:block; font-size:.95rem; color:var(--soft); margin-bottom:.3rem}
+select{width:100%; padding:.55rem .6rem; background:var(--white); border:1.5px solid var(--line); border-radius:4px}
+.check{display:flex; gap:.5rem; align-items:center; margin-bottom:1.2rem}
+.check input{width:1.1rem; height:1.1rem; accent-color:var(--ink)}
+
+/* prompt */
+textarea{
+  width:100%; min-height:15rem; resize:vertical; padding:1rem; background:var(--white);
+  border:2px solid var(--line); border-radius:6px; font:400 .95rem/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.copied{font-weight:600; min-height:1.5rem}
+footer{color:var(--soft); font-size:.9rem}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>What should I practise today?</h1>
+  <p class="lede">Let the page pick a Semester 1 subject, choose a topic from its syllabus, then copy the prompt into whichever AI chatbot you use. It will give you questions to work through.</p>
+
+  <section id="s1">
+    <h2><span>1</span>Draw a subject</h2>
+    <div class="slot" id="slot" aria-live="polite">
+      <div class="code" id="code"></div>
+      <p class="name empty" id="name">Nothing drawn yet</p>
+    </div>
+    <div class="row">
+      <button class="btn" id="draw">Draw a random subject</button>
+      <button class="btn ghost" id="redraw" hidden>Draw a different one</button>
+    </div>
+  </section>
+
+  <section id="s2" hidden>
+    <h2><span>2</span>Choose a topic</h2>
+    <div id="topics"></div>
+    <div class="custom">
+      <label for="custom">Or type your own topic</label>
+      <input type="text" id="custom" placeholder="e.g. pointer arithmetic with arrays">
+    </div>
+  </section>
+
+  <section id="s3" hidden>
+    <h2><span>3</span>Copy your prompt</h2>
+    <div class="opts">
+      <div><label for="count">Number of questions</label>
+        <select id="count"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+      <div><label for="level">Difficulty</label>
+        <select id="level"><option>easy</option><option selected>medium</option><option>hard, exam-level</option></select></div>
+      <div><label for="kind">Question style</label>
+        <select id="kind">
+          <option value="a mix of conceptual, short-answer and problem-solving questions">Mixed</option>
+          <option value="multiple-choice questions with four options each">Multiple choice</option>
+          <option value="short-answer questions">Short answer</option>
+          <option value="worked problems that need step-by-step solutions">Problem solving</option>
+        </select></div>
+    </div>
+    <label class="check"><input type="checkbox" id="hide" checked> Keep answers hidden until I reply</label>
+    <textarea id="out" readonly aria-label="Generated prompt"></textarea>
+    <div class="row" style="margin-top:.9rem">
+      <button class="btn" id="copy">Copy prompt</button>
+      <span class="copied" id="copied" role="status"></span>
+    </div>
+  </section>
+
+  <footer>Built from the B.Tech CSE (AI) Semester 1 curriculum, June 2022.</footer>
+</main>
+
+<script>
+/* ---------- Syllabus data: edit freely ---------- */
+const SUBJECTS = [
+ {name:"Mathematics for Computing 1", code:"22MAT110", units:[
+  {t:"Unit 1: Linear algebra", topics:["Linear dependence and independence","Gaussian elimination","Rank of a matrix","Vector spaces and basis","Dot product and orthogonality","Rotation matrices","Eigenvalues and eigenvectors"]},
+  {t:"Unit 2: Differential equations and calculus", topics:["Linear ODEs and formulation","Analytical and numerical solutions of ODEs","Impulse response","Converting higher-order ODEs to first order","ODE modelling (falling objects, satellites, circuits)","Multivariate calculus","Taylor series"]},
+  {t:"Unit 3: Probability", topics:["Discrete and continuous random variables","Mean, variance and standard deviation","Probability distributions","Monte Carlo simulation"]}]},
+ {name:"Computational Physics", code:"22PHY106", units:[
+  {t:"Unit 1: Forces", topics:["Newton's laws of motion","Force as a 3D vector","Resolution and resultant of forces"]},
+  {t:"Unit 2: Statics", topics:["Equilibrium about a point","Moment and couple","Equivalent force systems","Equilibrium of rigid bodies","Degrees of freedom and support constraints","Free body diagrams"]},
+  {t:"Unit 3: Kinematics", topics:["Kinematics of particles","Cartesian, cylindrical and spherical frames","Rigid body translation and rotation in 2D","Rigid body translation and rotation in 3D"]},
+  {t:"Unit 4: Mechanisms", topics:["Linkages and mechanisms","Four-bar mechanism"]}]},
+ {name:"Problem Solving and C Programming", code:"22ATE101", units:[
+  {t:"Unit 1: Problem solving", topics:["Algorithms and problem-solving strategy","Pseudocode and flowcharts","Compilers and types of software","Converting pseudocode to a program"]},
+  {t:"Unit 2: C basics", topics:["Structure of a C program","Data types, variables and constants","Input and output functions","Operators and expressions","Control statements and loops","Pre-processor commands"]},
+  {t:"Unit 3: Functions, arrays and pointers", topics:["Functions and recursion","Storage classes","Arrays and multi-dimensional arrays","Searching and sorting","String handling","Pointers","Structures and unions"]},
+  {t:"Unit 4: Files and libraries", topics:["File handling","Command line arguments","Macros and conditional compilation","Standard C library functions"]}]},
+ {name:"Elements of Computing Systems 1", code:"22AIE102", units:[
+  {t:"Unit 1: Logic foundations", topics:["Number systems and binary conversion","Negative numbers and signed magnitude","Boolean algebra","Karnaugh maps","Logic gates","Building gates from NAND","Hardware description language (Nand2Tetris)"]},
+  {t:"Unit 2: Combinational logic", topics:["Boolean function synthesis","Half adder and full adder","Multiplexer and demultiplexer","ALU design"]},
+  {t:"Unit 3: Sequential logic and architecture", topics:["Flip-flops and memory elements","Von Neumann architecture","Registers, RAM, ROM and program counter","Hack CPU","Machine language vs high-level language"]}]},
+ {name:"Discrete Mathematics", code:"22MAT121", units:[
+  {t:"Unit 1: Logic and counting", topics:["Propositional logic and equivalence","Predicates and quantifiers","Theorem proving","Functions","Mathematical induction","Recursive definitions and algorithms","Pigeonhole principle","Permutations and combinations"]},
+  {t:"Unit 2: Relations and recurrences", topics:["Representing relations","Closure of relations","Partial ordering","Equivalence relations and partitions","Recurrence relations","Generating functions","Divide and conquer relations","Inclusion-exclusion"]},
+  {t:"Unit 3: Number theory", topics:["Divisibility and factorization","Simultaneous linear congruences","Chinese remainder theorem","Wilson's and Fermat's theorems","Pseudoprimes and Carmichael numbers","Euler's theorem","Arithmetic functions","Quadratic residues"]}]},
+ {name:"Foundations of Indian Heritage", code:"22ADM101", units:[
+  {t:"Unit 1: Introduction", topics:["Introduction to Indian culture","Cultural ethos of Amrita Vishwa Vidyapeetham","Amma's life and vision of holistic education"]},
+  {t:"Unit 2: Life values", topics:["Purusharthas (goals of life)","Varnasrama dharma","Law of karma","Practices for happiness"]},
+  {t:"Unit 3: Culture and epics", topics:["Symbols of Indian culture","Festivals of India","Living in harmony with nature","Relevance of the epics today","Lessons from the Ramayana","Life and work of great seers"]}]},
+ {name:"Technical Communication", code:"19ENG111", units:[
+  {t:"Unit 1: Mechanics of writing", topics:["Articles, tenses and auxiliary verbs","Prepositions","Subject-verb and pronoun-antecedent agreement","Discourse markers and sentence linkers","Comprehension and sentence rearrangement"]},
+  {t:"Unit 2: Documents", topics:["Definitions, descriptions and instructions","Recommendations and user manuals","Reports and proposals","Formal letters","Impersonal passive and punctuation"]},
+  {t:"Unit 3: Technical writing", topics:["Technical paper writing and documentation style","Editing and proofreading","Modifiers, phrasal verbs, tone and style","Graphical representation","Mini technical project","Technical presentations"]}]}
+];
+
+const $ = id => document.getElementById(id);
+let subject = null, topic = "", unitTitle = "";
+
+function showSubject(s){
+  $("code").textContent = s.code;
+  const n = $("name"); n.textContent = s.name; n.classList.remove("empty");
+}
+
+function draw(){
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pool = SUBJECTS.filter(s => s !== subject);
+  const pick = pool[Math.floor(Math.random()*pool.length)];
+  const finish = () => {
+    subject = pick; topic = ""; unitTitle = "";
+    $("slot").classList.remove("spinning");
+    showSubject(pick); buildTopics(); $("custom").value = "";
+    $("s2").hidden = false; $("s3").hidden = true;
+    $("draw").hidden = true; $("redraw").hidden = false;
+    $("redraw").disabled = false; $("draw").disabled = false;
+    $("s2").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
+  };
+  if(reduce){ finish(); return; }
+  $("slot").classList.add("spinning"); $("draw").disabled = $("redraw").disabled = true;
+  let i = 0;
+  const t = setInterval(() => {
+    showSubject(SUBJECTS[Math.floor(Math.random()*SUBJECTS.length)]);
+    if(++i > 9){ clearInterval(t); finish(); }
+  }, 80);
+}
+
+function buildTopics(){
+  const box = $("topics"); box.innerHTML = "";
+  subject.units.forEach(u => {
+    const d = document.createElement("div"); d.className = "unit";
+    const h = document.createElement("h3"); h.textContent = u.t; d.appendChild(h);
+    const c = document.createElement("div"); c.className = "chips";
+    u.topics.forEach(tp => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = tp; b.setAttribute("aria-pressed","false");
+      b.onclick = () => selectTopic(tp, u.t, b);
+      c.appendChild(b);
+    });
+    d.appendChild(c); box.appendChild(d);
+  });
+}
+
+function selectTopic(tp, ut, btn){
+  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed","false"));
+  btn.setAttribute("aria-pressed","true");
+  topic = tp; unitTitle = ut; $("custom").value = "";
+  reveal();
+}
+
+function reveal(){
+  const first = $("s3").hidden;
+  $("s3").hidden = false; build();
+  if(first) $("s3").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+}
+
+function build(){
+  if(!subject || !topic) return;
+  const n = $("count").value, lvl = $("level").value, kind = $("kind").value;
+  const where = unitTitle ? ` (${unitTitle.replace(/^Unit \d+: /, "")} section of the syllabus)` : "";
+  const hide = $("hide").checked
+    ? "Number the questions and do not show any answers yet. Wait for me to reply with my answers, then check each one, point out where I went wrong, and explain the correct method."
+    : "Number the questions and put the full answers with short explanations at the end.";
+  $("out").value =
+`I'm a first-year B.Tech CSE (Artificial Intelligence) student at Amrita Vishwa Vidyapeetham. I'm studying ${subject.name} (${subject.code}) and want to practise one topic.
+
+Topic: ${topic}${where}
+
+Please write ${n} ${lvl} practice questions on this topic. Use ${kind}. Keep them within what a first-semester course would cover, and put the easier questions first.
+
+${hide}`;
+}
+
+$("draw").onclick = draw;
+$("redraw").onclick = draw;
+$("custom").addEventListener("input", e => {
+  const v = e.target.value.trim();
+  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed","false"));
+  topic = v; unitTitle = "";
+  if(v) reveal(); else { $("s3").hidden = true; }
+});
+["count","level","kind","hide"].forEach(id => $(id).addEventListener("change", build));
+
+$("copy").onclick = async () => {
+  const ta = $("out"), msg = $("copied");
+  try { await navigator.clipboard.writeText(ta.value); }
+  catch(e){ ta.select(); document.execCommand("copy"); }
+  msg.textContent = "Copied. Paste it into your chatbot.";
+  setTimeout(() => msg.textContent = "", 3000);
+};
+</script>
+</body>
+</html>
